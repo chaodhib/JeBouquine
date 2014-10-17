@@ -59,9 +59,9 @@
 			<ref bean="orderDAO" />
 		</property>
 		
-		<property name="orderBusinessSingleton">
-			<ref bean="orderBusinessSingleton" />
-		</property>
+<!-- 		<property name="orderBusinessSingleton"> -->
+<!-- 			<ref bean="orderBusinessSingleton" /> -->
+<!-- 		</property> -->
 		
 	</bean>
 
