@@ -24,7 +24,7 @@
 				</s:form>
 			</s:div>
 			
-			<a href=/jeBouquine_Spring/frontoffice/book/prepAdvSearch>Recherche
+			<a href=frontoffice/book/prepAdvSearch>Recherche
 				avancée</a>
 				
 			<s:div>
