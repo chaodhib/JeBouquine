@@ -38,7 +38,11 @@ public class BOAuthorAction {
 			return "modif";
 		}
 		else if(value[0].equals("Supprimer")){
-			authorBusiness.remove(author);
+			try {
+				authorBusiness.remove(author);
+			} catch (Exception e) {
+				return "error";
+			}
 			return "suppr";
 		}
 		else

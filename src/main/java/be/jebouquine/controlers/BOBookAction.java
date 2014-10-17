@@ -80,7 +80,11 @@ public class BOBookAction {
 			return "modif";
 		}
 		else if(value[0].equals("Supprimer")){
-			bookBusiness.remove(book);
+			try {
+				bookBusiness.remove(book);
+			} catch (Exception e) {
+				return "error";
+			}
 			return "suppr";
 		}
 		else if(value[0].equals("Voir")){

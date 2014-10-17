@@ -37,7 +37,11 @@ public class BOPublisherAction {
 			return "modif";
 		}
 		else if(value[0].equals("Supprimer")){
-			publisherBusiness.remove(publisher);
+			try {
+				publisherBusiness.remove(publisher);
+			} catch (Exception e) {
+				return "error";
+			}
 			return "suppr";
 		}
 		else

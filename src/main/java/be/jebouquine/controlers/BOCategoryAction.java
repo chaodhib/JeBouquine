@@ -37,7 +37,11 @@ public class BOCategoryAction {
 			return "modif";
 		}
 		else if(value[0].equals("Supprimer")){
-			categoryBusiness.remove(category);
+			try {
+				categoryBusiness.remove(category);
+			} catch (Exception e) {
+				return "error";
+			}
 			return "suppr";
 		}
 		else

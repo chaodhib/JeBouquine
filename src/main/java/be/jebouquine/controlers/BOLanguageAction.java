@@ -37,7 +37,12 @@ public class BOLanguageAction {
 			return "modif";
 		}
 		else if(value[0].equals("Supprimer")){
-			languageBusiness.remove(language);
+			try {
+				languageBusiness.remove(language);
+			} catch (Exception e) {
+				return "error";
+			}
+			
 			return "suppr";
 		}
 		else
