@@ -75,11 +75,11 @@
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 	
-	<bean id="orderBusinessSingleton" class="be.jebouquine.business.singletons.OrderBusinessSingleton" factory-method="getInstance">
-		<property name="globalParamDAO">
-			<ref bean="globalParamDAO" />
-		</property>
-	</bean>
+<!-- 	<bean id="orderBusinessSingleton" class="be.jebouquine.business.singletons.OrderBusinessSingleton" factory-method="getInstance"> -->
+<!-- 		<property name="globalParamDAO"> -->
+<!-- 			<ref bean="globalParamDAO" /> -->
+<!-- 		</property> -->
+<!-- 	</bean> -->
 	
 	<bean id="globalParamDAO" class="be.jebouquine.dao.impl.GlobalParamDAOImpl">
 		<property name="sessionFactory" ref="sessionFactory" />
