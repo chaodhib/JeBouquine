@@ -1,0 +1,134 @@
+<?xml  version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jee="http://www.springframework.org/schema/jee" xmlns:lang="http://www.springframework.org/schema/lang"
+	xmlns:p="http://www.springframework.org/schema/p" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee.xsd
+        http://www.springframework.org/schema/lang http://www.springframework.org/schema/lang/spring-lang.xsd
+        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+        http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+
+	<!-- This bean has been referred from struts.xml file; So type it correctly; -->
+
+	<!-- Make scope prototype; This is really important. <bean name="editEmployeeAction" 
+		class="be.businesstraining.controller.EditEmployeeAction" scope="prototype"> 
+		<property name="employeeManager"> <ref bean="employeeManager" /> </property> 
+		</bean> -->
+
+	<import resource="/beansFiles/beansCategory.xml" />
+	<import resource="/beansFiles/beansLanguage.xml" />
+	<import resource="/beansFiles/beansPublisher.xml" />
+	<import resource="/beansFiles/beansAuthor.xml" />
+	<import resource="/beansFiles/beansBook.xml" />
+	<import resource="/beansFiles/beansClient.xml" />
+
+	<!-- <bean name="headerAction" class="be.jebouquine.controlers.FOHeaderAction" -->
+	<!-- scope="prototype"> -->
+	<!-- <property name="categoryBusiness"> -->
+	<!-- <ref bean="categoryBusiness" /> -->
+	<!-- </property> -->
+	<!-- </bean> -->
+
+
+
+	<bean id="cartBusiness" class="be.jebouquine.business.impl.CartBusinessImpl">
+		<property name="bookBusiness">
+			<ref bean="bookBusiness" />
+		</property>
+	</bean>
+
+
+
+	<bean id="orderBusinessFront" class="be.jebouquine.business.impl.OrderBusinessFrontImpl">
+		<property name="bookBusiness">
+			<ref bean="bookBusiness" />
+		</property>
+
+		<property name="paymentBusiness">
+			<ref bean="paymentBusiness" />
+		</property>
+		<property name="orderStateDAO">
+			<ref bean="orderStateDAO" />
+		</property>
+		<property name="orderDAO">
+			<ref bean="orderDAO" />
+		</property>
+		
+		<property name="orderBusinessSingleton">
+			<ref bean="orderBusinessSingleton" />
+		</property>
+		
+	</bean>
+
+	<bean id="paymentBusiness" class="be.jebouquine.business.impl.PaymentBusinessImpl"></bean>
+	
+	<bean id="orderDAO" class="be.jebouquine.dao.impl.OrderDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	
+	<bean id="orderStateDAO" class="be.jebouquine.dao.impl.OrderStateDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	
+	<bean id="orderBusinessSingleton" class="be.jebouquine.business.singletons.OrderBusinessSingleton" factory-method="getInstance">
+		<property name="globalParamDAO">
+			<ref bean="globalParamDAO" />
+		</property>
+	</bean>
+	
+	<bean id="globalParamDAO" class="be.jebouquine.dao.impl.GlobalParamDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+
+	<!-- Configure jdbc.properties -->
+	<bean id="propertyConfigurer"
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"
+		p:location="/WEB-INF/jdbc.properties" />
+
+	<!-- Data Source configuration -->
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
+		destroy-method="close" p:driverClassName="${jdbc.driverClassName}"
+		p:url="${jdbc.databaseurl}" p:username="${jdbc.username}" p:password="${jdbc.password}" />
+
+	<!-- Configure hibernate session factory -->
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="annotatedClasses">
+			<list>
+				<value>be.jebouquine.entities.Admin</value>
+				<value>be.jebouquine.entities.Author</value>
+				<value>be.jebouquine.entities.Book</value>
+				<value>be.jebouquine.entities.Category</value>
+				<value>be.jebouquine.entities.Client</value>
+				<value>be.jebouquine.entities.Comment</value>
+				<value>be.jebouquine.entities.Editor</value>
+				<value>be.jebouquine.entities.Order</value>
+				<value>be.jebouquine.entities.OrderState</value>
+				<value>be.jebouquine.entities.OrderLine</value>
+				<value>be.jebouquine.entities.Language</value>
+				<value>be.jebouquine.entities.GlobalParam</value>
+			</list>
+		</property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">${jdbc.dialect}</prop>
+				<prop key="hibernate.show_sql">true</prop>
+				<prop key="hibernate.hbm2ddl.auto">create-drop</prop>
+			</props>
+		</property>
+	</bean>
+	<!-- Run SQL queries in transactions -->
+	<tx:annotation-driven />
+	<bean id="transactionManager"
+		class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+</beans>

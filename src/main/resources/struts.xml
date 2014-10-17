@@ -1,0 +1,374 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+   "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+   "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<!-- devMode is helpful when you want some extra logs for debugging -->
+	<constant name="struts.devMode" value="true" />
+
+	<!-- Global message resource; Otherwise you will have separate message resource 
+		for each Action -->
+	<constant name="struts.custom.i18n.resources" value="messages" />
+	<!-- This is important if you are planning to have slashes in Action URLs 
+		e.g. In this demo, employee is deleted using URL /delete/10 If this is set 
+		to false; then struts will try to find mapping for URL "/10" instead of "/delete/10" -->
+	<constant name="struts.enable.SlashesInActionNames" value="false" />
+
+	<!--            -->
+	<!-- BACKOFFICE -->
+	<!--            -->
+	<package name="backoffice" extends="struts-default" namespace="/backoffice">
+		<global-results>
+			<result name="error">/backoffice/Error.jsp</result>
+		</global-results>
+
+		<action name="Menu">
+			<result>/backoffice/MainMenu.jsp</result>
+		</action>
+	</package>
+
+	<!-- CATEGORY -->
+	<package name="backoffice_category" extends="backoffice"
+		namespace="/backoffice/category">
+
+		<default-class-ref class="be.jebouquine.controlers.BOCategoryAction"></default-class-ref>
+
+		<action name="Menu" method="displayAll">
+			<result name="success">Gestion.jsp</result>
+		</action>
+
+		<action name="Add" method="add">
+			<result name="success" type="redirectAction">
+				<param name="actionName">Menu</param>
+			</result>
+		</action>
+
+		<action name="PreModifOrSuppr" method="preModifOrSuppr">
+			<result name="modif">Modify.jsp</result>
+			<result name="suppr" type="redirectAction">
+				<param name="actionName">Menu</param>
+			</result>
+		</action>
+
+		<action name="Modify" method="modify">
+			<result name="success" type="redirectAction">
+				<param name="actionName">Menu</param>
+			</result>
+		</action>
+	</package>
+
+	<!-- PUBLISHER -->
+	<package name="backoffice_publisher" extends="backoffice"
+		namespace="/backoffice/publisher">
+
+		<default-class-ref class="be.jebouquine.controlers.BOPublisherAction"></default-class-ref>
+
+		<action name="Menu" method="displayAll">
+			<result name="success">Gestion.jsp</result>
+		</action>
+
+		<action name="Add" method="add">
+			<result name="success" type="redirectAction">
+				<param name="actionName">Menu</param>
+			</result>
+		</action>
+
+		<action name="PreModifOrSuppr" method="preModifOrSuppr">
+			<result name="modif">Modify.jsp</result>
+			<result name="suppr" type="redirectAction">
+				<param name="actionName">Menu</param>
+			</result>
+		</action>
+
+		<action name="Modify" method="modify">
+			<result name="success" type="redirectAction">
+				<param name="actionName">Menu</param>
+			</result>
+		</action>
+	</package>
+
+	<!-- LANGUAGE -->
+	<package name="backoffice_language" extends="backoffice"
+		namespace="/backoffice/language">
+
+		<default-class-ref class="be.jebouquine.controlers.BOLanguageAction"></default-class-ref>
+
+		<action name="Menu" method="displayAll">
+			<result name="success">Gestion.jsp</result>
+		</action>
+
+		<action name="Add" method="add">
+			<result name="success" type="redirectAction">
+				<param name="actionName">Menu</param>
+			</result>
+		</action>
+
+		<action name="PreModifOrSuppr" method="preModifOrSuppr">
+			<result name="modif">Modify.jsp</result>
+			<result name="suppr" type="redirectAction">
+				<param name="actionName">Menu</param>
+			</result>
+		</action>
+
+		<action name="Modify" method="modify">
+			<result name="success" type="redirectAction">
+				<param name="actionName">Menu</param>
+			</result>
+		</action>
+	</package>
+
+	<!-- AUTHOR -->
+	<package name="backoffice_author" extends="backoffice"
+		namespace="/backoffice/author">
+
+		<default-class-ref class="be.jebouquine.controlers.BOAuthorAction"></default-class-ref>
+
+		<action name="Search" method="findByCriteria">
+			<result name="success">Results.jsp</result>
+		</action>
+
+		<action name="Add" method="add">
+			<result name="success">Gestion.jsp</result>
+		</action>
+
+		<action name="PreModifOrSuppr" method="preModifOrSuppr">
+			<result name="modif">Modify.jsp</result>
+			<result name="suppr">Gestion.jsp</result>
+		</action>
+
+		<action name="Modify" method="modify">
+			<result name="success">Gestion.jsp</result>
+		</action>
+	</package>
+
+	<!-- BOOK -->
+	<package name="backoffice_book" extends="backoffice" namespace="/backoffice/book">
+
+		<default-class-ref class="be.jebouquine.controlers.BOBookAction"></default-class-ref>
+
+		<action name="Menu" method="prepFields">
+			<result name="success">Gestion.jsp</result>
+		</action>
+
+		<action name="PreAdd" method="prepFields">
+			<result name="success">Add.jsp</result>
+		</action>
+
+		<action name="PreModif" method="prepFields">
+			<result name="success">Modify.jsp</result>
+		</action>
+
+		<action name="Search" method="findByCriteria">
+			<result name="success">Results.jsp</result>
+		</action>
+
+		<action name="Add" method="add">
+			<result name="success" type="redirectAction">
+				<param name="actionName">Menu</param>
+			</result>
+		</action>
+
+		<action name="PreModifOrSuppr" method="preModifOrSuppr">
+			<result name="voir">View.jsp</result>
+			<result name="modif">Modify.jsp</result>
+			<result name="suppr" type="redirectAction">
+				<param name="actionName">Menu</param>
+			</result>
+		</action>
+
+		<action name="Modify" method="modify">
+			<result name="success" type="redirectAction">
+				<param name="actionName">Menu</param>
+			</result>
+		</action>
+	</package>
+
+	<!--             -->
+	<!-- FRONTOFFICE -->
+	<!--             -->
+	<package name="frontoffice" extends="struts-default" namespace="/frontoffice">
+		<global-results>
+			<result name="error">/frontoffice/Error.jsp</result>
+		</global-results>
+
+	</package>
+
+
+	<!-- FRONTPAGE -->
+	<package name="frontoffice_frontPage" extends="frontoffice"
+		namespace="/frontoffice">
+		<action name="Menu" class="be.jebouquine.controlers.FOFrontPageAction"
+			method="frontPageDisplay">
+			<result name="success">FrontPage.jsp</result>
+		</action>
+	</package>
+
+	<!-- HEADER & HEADERBAND -->
+	<package name="frontoffice_headers" extends="frontoffice"
+		namespace="/frontoffice">
+		<action name="Header" class="be.jebouquine.controlers.FOHeaderAction">
+			<result name="success">/frontoffice/Header.jsp</result>
+		</action>
+
+		<action name="HeaderBand" class="be.jebouquine.controlers.FOHeaderBandAction">
+			<result name="success">/frontoffice/HeaderBand.jsp</result>
+		</action>
+	</package>
+
+	<!-- BOOK & SEARCH -->
+	<package name="frontoffice_book" extends="frontoffice"
+		namespace="/frontoffice/book">
+
+		<action name="Search" class="be.jebouquine.controlers.FOSearchBookAction"
+			method="search">
+			<result name="success">SearchResults.jsp</result>
+		</action>
+
+		<action name="prepAdvSearch" class="be.jebouquine.controlers.FOSearchBookAction"
+			method="prepAdvancedSearch">
+			<result name="success">AdvancedSearch.jsp</result>
+		</action>
+
+		<action name="View" class="be.jebouquine.controlers.FOBookPageAction">
+			<result>BookPage.jsp</result>
+		</action>
+		
+		<action name="addCommentAndRefresh" class="be.jebouquine.controlers.FOBookPageAction"
+			method="addCommentAndRefresh">
+			<result>BookPage.jsp</result>
+		</action>
+
+	</package>
+
+	<!-- CART -->
+	<package name="frontoffice_cart" extends="frontoffice" namespace="/frontoffice/cart">
+		<default-class-ref class="be.jebouquine.controlers.FOCartAction"></default-class-ref>
+	
+		<action name="AddBookIntoCart"
+			method="addBookIntoCart">
+			<result name="success">CartAddConfirmation.jsp</result>
+		</action>
+
+		<action name="View"
+			method="loadCart">
+			<result name="success">Cart.jsp</result>
+		</action>
+
+		<action name="DeleteCartLine"
+			method="deleteCartLine">
+			<result name="success" type="redirectAction">
+				<param name="actionName">View</param>
+			</result>
+		</action>
+		
+		<action name="PrepModifyQuantity"
+			method="loadCart">
+			<result name="success">EditCart.jsp</result>
+		</action>
+		
+		<action name="ModifyQuantity"
+			method="modifyQuantity">
+			<result name="success" type="redirectAction">
+				<param name="actionName">View</param>
+			</result>
+		</action>
+
+	</package>
+
+	<!-- LOGIN -->
+	<package name="frontoffice_log" extends="frontoffice"
+		namespace="/frontoffice/log">
+
+		<action name="ToLogin">
+			<result>Login.jsp</result>
+		</action>
+
+		<action name="ToRegister">
+			<result>Register.jsp</result>
+		</action>
+
+		<action name="Login" class="be.jebouquine.controlers.FOLoginAction"
+			method="login">
+			<result name="success" type="redirectAction">
+				<param name="actionName">../Menu</param>
+			</result>
+			<result name="loginFailure">Login.jsp</result>
+		</action>
+
+		<action name="Logout" class="be.jebouquine.controlers.FOLoginAction"
+			method="logout">
+			<result name="success" type="redirectAction">
+				<param name="actionName">../Menu</param>
+			</result>
+		</action>
+
+		<action name="Register" class="be.jebouquine.controlers.FOLoginAction"
+			method="register">
+			<result name="success" type="redirectAction">
+				<param name="actionName">../Menu</param>
+			</result>
+		</action>
+	</package>
+
+	<!-- ACCOUNT -->
+	<package name="frontoffice_account" extends="frontoffice"
+		namespace="/frontoffice/account">
+
+		<action name="LoadAccount" class="be.jebouquine.controlers.FOAccountAction"
+			method="loadAccount">
+			<result name="success">Account.jsp</result>
+		</action>
+
+		<action name="EditAccount" class="be.jebouquine.controlers.FOAccountAction"
+			method="loadAccount">
+			<result name="success">EditAccount.jsp</result>
+		</action>
+
+		<action name="ReloadAccount" class="be.jebouquine.controlers.FOAccountAction"
+			method="editAccount">
+			<result name="success">Account.jsp</result>
+		</action>
+
+	</package>
+	
+	<!-- ORDER -->
+	<package name="frontoffice_order" extends="frontoffice"
+		namespace="/frontoffice/order">
+		
+		<action name="PrepStep1" class="be.jebouquine.controlers.FOOrderAction"
+			method="prepStep1">
+			<result name="success">OrderingStep1.jsp</result>
+		</action>
+		
+		<action name="PrepStep2" class="be.jebouquine.controlers.FOOrderAction"
+			method="prepStep2">
+			<result name="success">OrderingStep2.jsp</result>
+			<result name="failure" type="redirectAction">
+				<param name="actionName">PrepStep1</param>
+			</result>
+		</action>
+		
+		<action name="PrepStep3" class="be.jebouquine.controlers.FOOrderAction"
+			method="prepStep3">
+			<result name="success">OrderingStep3.jsp</result>
+			<result name="failure">OrderingStep2.jsp</result>
+		</action>
+	</package>
+	
+	<!--            -->
+	<!--    TESTS   -->
+	<!--            -->
+	
+	<package name="tests" extends="struts-default" namespace="/tests">
+		<global-results>
+			<result name="error">/frontoffice/Error.jsp</result>
+		</global-results>
+		
+				
+		<action name="GlobalParamDAO" class="be.jebouquine.controlers.TestAction"
+			method="execute">
+			<result name="success">test2.jsp</result>
+		</action>
+
+	</package>
+</struts>
