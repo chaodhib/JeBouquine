@@ -52,6 +52,8 @@
 		</s:form>
 	</s:div>
 	<a href=../Menu>Retour au menu</a>
+	
+	<br><br> Commentaires : <br>
 	<s:iterator value="comments">
 		<table>
 			<tr>
