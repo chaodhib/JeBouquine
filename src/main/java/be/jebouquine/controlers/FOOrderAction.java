@@ -47,8 +47,8 @@ public class FOOrderAction implements SessionAware {
 	}
 	
 	// METHOD ACTION 3
-	private String  paymentInfos;
-	private String orderRef;
+	private String  paymentInfos; // IN
+	private String orderRef; // OUT
 	
 	public String prepStep3(){ // Input paymentInfos from jsp, output orderId to jsp
 		try {

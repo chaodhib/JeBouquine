@@ -5,7 +5,6 @@ import org.hibernate.criterion.Restrictions;
 
 import be.jebouquine.dao.interfaces.IGlobalParamDAO;
 import be.jebouquine.entities.GlobalParam;
-import be.jebouquine.exceptions.JeBouquineBusinessException;
 import be.jebouquine.exceptions.JeBouquineException;
 
 public class GlobalParamDAOImpl extends GenericDAOImpl<GlobalParam> implements
@@ -16,9 +15,12 @@ public class GlobalParamDAOImpl extends GenericDAOImpl<GlobalParam> implements
 				GlobalParam.class);
 		if (null != name && !name.isEmpty()) {
 			criteria.add(Restrictions.eq("name", name));
-			return (GlobalParam) criteria.list().get(0);
+			if(!criteria.list().isEmpty())
+				return (GlobalParam) criteria.list().get(0); // on presume qu'il y ait au plus un seul param par nom
+			else
+				return null;
 		} else {
-			return null;
+			throw new IllegalArgumentException(); //TODO : mettre au clair la strategie de gestion des exceptions
 		}
 	}
 

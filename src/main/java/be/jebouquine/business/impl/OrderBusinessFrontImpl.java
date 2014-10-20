@@ -1,6 +1,7 @@
 package be.jebouquine.business.impl;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.List;
 
@@ -85,13 +86,14 @@ public class OrderBusinessFrontImpl implements IOrderBusinessFront {
 	}
 
 	@Override
-	public String stepC(OrderCreation oc, Client client, Cart cart) {
+	public String stepC(OrderCreation oc, Client client, Cart cart) throws Exception {
 		if (paymentBusiness.makePayment(oc.getPaymentInfos(),
 				cart.getTotalPrice())) {
 			Order order = new Order();
 			order.setAddress(oc.getAddressOfDelivery());
 			order.setClient(client);
-			order.setDate(new GregorianCalendar());
+			Calendar calendar=new GregorianCalendar();
+			order.setDate(calendar);
 			// CartLines -> OrderLines
 			OrderLine ol;
 			List<OrderLine> orderlines = new ArrayList<OrderLine>();
@@ -112,20 +114,27 @@ public class OrderBusinessFrontImpl implements IOrderBusinessFront {
 
 			// Order ref
 			
-			String orderRef="A000"+orderBusinessSingleton.getNextOrderNumber();
+			String orderRef;
+			try {
+				int year=calendar.get(Calendar.YEAR);
+				String orderNumber=String.format("%04d", orderBusinessSingleton.getNextOrderNumber());
+				orderRef = "JB"+year+orderNumber;
+			} catch (Exception e) {
+				throw new Exception(e);
+			}
 			order.setOrderRef(orderRef);
 
 			// persister l'order
 			try {
 				orderDAO.add(order);
 			} catch (Exception e) {
-				return null;
+				throw new Exception(e);
 			}
 
 			// renvoyer vers la vue la reference de l'order
 			return orderRef;
 		} else
-			return null;
+			throw new Exception("Payment validation failed");
 	}
 
 	@Override

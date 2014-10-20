@@ -13,7 +13,7 @@ public class TestAction implements Action {
 	@Override
 	public String execute() throws Exception {
 		try {
-			System.out.println(orderBusinessSingleton.getNextOrderNumber());
+			System.out.println("TestAction, println: "+orderBusinessSingleton.getNextOrderNumber());
 		} catch (Exception e) {
 			e.printStackTrace();
 			return ERROR;

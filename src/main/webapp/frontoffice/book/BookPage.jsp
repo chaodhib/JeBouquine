@@ -54,6 +54,7 @@
 	<a href=../Menu>Retour au menu</a>
 	
 	<br><br> Commentaires : <br>
+	<s:if test="comments.size()==0">Il n'y a pour l'instant aucun commentaire client. </s:if>
 	<s:iterator value="comments">
 		<table>
 			<tr>
@@ -74,7 +75,7 @@
 		</s:form>
 	</s:if>
 	<s:else>
-	Vous devez vous connecter pour poster un commentaire
+	Connectez vous pour poster un commentaire.
 	</s:else>
 
 </body>

@@ -1,9 +1,12 @@
 <?xml  version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:aop="http://www.springframework.org/schema/aop"
 	xmlns:context="http://www.springframework.org/schema/context"
-	xmlns:jee="http://www.springframework.org/schema/jee" xmlns:lang="http://www.springframework.org/schema/lang"
-	xmlns:p="http://www.springframework.org/schema/p" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:jee="http://www.springframework.org/schema/jee" 
+	xmlns:lang="http://www.springframework.org/schema/lang"
+	xmlns:p="http://www.springframework.org/schema/p" 
+	xmlns:tx="http://www.springframework.org/schema/tx"
 	xmlns:util="http://www.springframework.org/schema/util"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
         http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
@@ -59,9 +62,9 @@
 			<ref bean="orderDAO" />
 		</property>
 		
-<!-- 		<property name="orderBusinessSingleton"> -->
-<!-- 			<ref bean="orderBusinessSingleton" /> -->
-<!-- 		</property> -->
+		<property name="orderBusinessSingleton">
+			<ref bean="orderBusinessSingleton" />
+		</property>
 		
 	</bean>
 
@@ -75,26 +78,39 @@
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 	
-<!-- 	<bean id="orderBusinessSingleton" class="be.jebouquine.business.singletons.OrderBusinessSingleton" factory-method="getInstance"> -->
-<!-- 		<property name="globalParamDAO"> -->
-<!-- 			<ref bean="globalParamDAO" /> -->
-<!-- 		</property> -->
-<!-- 	</bean> -->
-	
 	<bean id="globalParamDAO" class="be.jebouquine.dao.impl.GlobalParamDAOImpl">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
+	
+	<bean id="orderBusinessSingleton" class="be.jebouquine.business.singletons.OrderBusinessSingleton" 
+				factory-method="getInstance">
+		<constructor-arg ref="transactionManager" />
+		<property name="globalParamDAO">
+			<ref bean="globalParamDAO" />
+		</property>
+		
+	</bean>
+	
+	
+	
 
 
 	<!-- Configure jdbc.properties -->
 	<bean id="propertyConfigurer"
 		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"
-		p:location="/WEB-INF/jdbc.properties" />
+		p:location="classpath:jdbc.properties" />
 
 	<!-- Data Source configuration -->
-	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
-		destroy-method="close" p:driverClassName="${jdbc.driverClassName}"
-		p:url="${jdbc.databaseurl}" p:username="${jdbc.username}" p:password="${jdbc.password}" />
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close" >
+		
+		<property name="driverClassName" 	value="${jdbc.driverClassName}"/>
+        <property name="url" 				value="${jdbc.databaseurl}"/>
+        <property name="username" 			value="${jdbc.username}"/>
+        <property name="password" 			value="${jdbc.password}"/>
+<!--         <property name="testWhileIdle " 	value="true"/> -->
+<!--         <property name="validationQuery " 	value="SELECT 1" /> -->
+
+	</bean>
 
 	<!-- Configure hibernate session factory -->
 	<bean id="sessionFactory"
@@ -120,12 +136,12 @@
 			<props>
 				<prop key="hibernate.dialect">${jdbc.dialect}</prop>
 				<prop key="hibernate.show_sql">true</prop>
-				<prop key="hibernate.hbm2ddl.auto">create-drop</prop>
+				<prop key="hibernate.hbm2ddl.auto">update</prop>
 			</props>
 		</property>
 	</bean>
 	<!-- Run SQL queries in transactions -->
-	<tx:annotation-driven />
+	<tx:annotation-driven /> <!-- ici, l'utilisation de transactionManager est implicite car par defaut -->
 	<bean id="transactionManager"
 		class="org.springframework.orm.hibernate4.HibernateTransactionManager">
 		<property name="sessionFactory" ref="sessionFactory" />

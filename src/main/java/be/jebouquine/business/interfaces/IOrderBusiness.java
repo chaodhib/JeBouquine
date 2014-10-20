@@ -3,7 +3,6 @@ package be.jebouquine.business.interfaces;
 import java.util.List;
 
 import be.jebouquine.entities.Client;
-import be.jebouquine.entities.Order;
 import be.jebouquine.modelview.OrderView;
 
 public interface IOrderBusiness {

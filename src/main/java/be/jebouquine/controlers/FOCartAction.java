@@ -1,14 +1,11 @@
 package be.jebouquine.controlers;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 import org.apache.struts2.interceptor.SessionAware;
 
-import be.jebouquine.business.interfaces.IBookBusiness;
 import be.jebouquine.business.interfaces.ICartBusiness;
-import be.jebouquine.entities.Book;
 import be.jebouquine.modelview.Cart;
 import be.jebouquine.modelview.CartLine;
 

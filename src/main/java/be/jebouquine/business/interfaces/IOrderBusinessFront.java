@@ -36,8 +36,9 @@ public interface IOrderBusinessFront extends IOrderBusiness {
 	 * @param client
 	 * @param cart
 	 * @return
+	 * @throws Exception 
 	 */
-	public String stepC(OrderCreation oc, Client client, Cart cart);
+	public String stepC(OrderCreation oc, Client client, Cart cart) throws Exception;
 	
 	/**
 	 * 

@@ -1,8 +1,5 @@
 package be.jebouquine.modelview;
 
-import be.jebouquine.dao.interfaces.IClientDAO;
-import be.jebouquine.entities.Client;
-
 public class OrderCreation {
 
 	private String addressOfDelivery;
