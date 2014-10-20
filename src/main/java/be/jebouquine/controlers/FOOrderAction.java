@@ -64,8 +64,10 @@ public class FOOrderAction implements SessionAware {
 			orderRef=orderBusinessFront.stepC(oc, client, cart);
 			if(orderRef==null)
 				return "failure";
-			else
+			else{
+				session.remove(CART_KEY);
 				return "success";
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 			return "error";

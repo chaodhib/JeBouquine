@@ -24,6 +24,6 @@ INSERT INTO jebouquine.ORDERSTATE(NAME)
 VALUES('En attente'),('Preparation'),('Livraison'),('Recue');
 
 INSERT INTO jebouquine.COMMENT (CONTENT, book_ID, client_ID)
-VALUES ('Great book! 10/10', 1, 1)
+VALUES ('Great book! 10/10', 1, 1),('Nice read', 2, 1);
 
 
