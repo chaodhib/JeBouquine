@@ -14,14 +14,14 @@
 		}
 		
 		h2 {
-			color: #6699FF;
+/* 			color: #6699FF; */
 		}
 		
 		.cases{
-			background-color: #6699FF;
-			width: 200px;
-			float: left;
-			margin: 10px;}
+/* 			background-color: #6699FF; */
+/* 			width: 200px; */
+/* 			float: left; */
+/* 			margin: 10px;} */
 		}
 	</style>
 </head>
