@@ -8,7 +8,49 @@
 <title>TEST SUCCESS!</title>
 </head>
 <body bgcolor="#ffffff" style="font-family: Arial;">
+
+	Test1 réussi!
+	<hr>
 	
-	Le parametre global a été correctement persisté!
+	<h3>Choose an author:</h3>
+  <form method="get">
+    <input type="checkbox" name="author" value="Tan Ah Teck">Tan
+    <input type="checkbox" name="author" value="Mohd Ali">Ali
+    <input type="checkbox" name="author" value="Kumar">Kumar
+    <input type="submit" value="Query">
+  </form>
+ 
+  <%
+  String[] authors = request.getParameterValues("author");
+  if (authors != null) {
+  %>
+    <h3>You have selected author(s):</h3>
+    <ul>
+  <%
+      for (int i = 0; i < authors.length; ++i) {
+  %>
+        <li><%= authors[i] %></li>
+  <%
+      }
+  %>
+    </ul>
+    <a href="<%= request.getRequestURI() %>">BACK</a>
+  <%
+  } else{
+  %>
+  derp
+  <%
+  }
+  %>
+  <hr>
+  <label>Age: <input type="text" name="age" /></label>
+<br/ >
+Gender:
+<input id="female" type="radio" name="gender"
+value="f">
+<label for="female">Female</label>
+<input id="male" type="radio" name="gender"
+value="m">
+<label for="male">Male</label>
 </body>
 </html>

@@ -16,8 +16,8 @@ public class BookBusinessImpl implements IBookBusiness {
 	
 	private IBookDAO bookDAO;
 	
-	private final int SIZEOFBESTSALES = 4;
-	private final int SIZEOFNOVELTIES = 4;
+	private final int SIZEOFBESTSALES = 5;
+	private final int SIZEOFNOVELTIES = 5;
 	
 	// -------------------------------------------------------------------
 	
@@ -117,12 +117,6 @@ public class BookBusinessImpl implements IBookBusiness {
 		} catch (Exception e) {
 			return books;
 		}
-	}
-
-	@Override
-	public boolean addComment(Book book, String comment) {
-		// TODO Auto-generated method stub
-		return false;
 	}
 
 }

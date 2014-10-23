@@ -7,6 +7,8 @@
 <head>
 </head>
 <body>
+	<s:url action="PrepAdvSearch" id="prepAdvSearch" namespace="/frontoffice/book" />
+
 	<s:div style="background-color:#cdf1ff;  min-height: 120px;">
 		<s:div style="display: inline-block;">
 			<s:url action="Menu" id="return" />
@@ -23,10 +25,9 @@
 					<s:submit value="Rechercher"></s:submit>
 				</s:form>
 			</s:div>
-			
-			<a href=/frontoffice/book/prepAdvSearch>Recherche
-				avancée</a>
-				
+
+			<s:a href="%{prepAdvSearch}">Recherche avancée</s:a>
+
 			<s:div>
 				<table style="background-color: #E6E6FA" border="1">
 					<tr>

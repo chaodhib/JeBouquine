@@ -18,7 +18,17 @@
 
 		<s:textfield name="book.isbn" value="%{book.isbn}" label="ISBN"/>
 		<s:textfield name="book.year" value="%{book.year}" label="Année de Publication (4chiffres)"/>
+		
+<%-- 		<%  --%>
+// 		StringBuilder sb=new StringBuilder();
+// 		java.util.Formatter formatter = new java.util.Formatter(sb);
+// 		formatter.format(java.util.Locale.FRANCE, "%.2f", "%{book.price}");
+// 		formatter.close();
+<%-- 		%> --%>
+		
 		<s:textfield name="book.price" value="%{book.price}" label="Prix"/>
+		<s:textfield name="book.urlImage" value="%{book.urlImage}" label="URL Image"/>
+		<s:textfield name="book.urlImageMini" value="%{book.urlImageMini}" label="URL Image Miniature (150px en hauteur)"/>
 		<s:hidden name="book.id" value="%{book.id}"/>
 		<s:submit />
 	</s:form>

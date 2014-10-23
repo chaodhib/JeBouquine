@@ -26,7 +26,7 @@
 
 	<s:div style="float:right; height: 100%; width: 50%;" align="center">
 		<h2>Pas encore inscrit?</h2>
-		<s:a href="/jeBouquine_Spring/frontoffice/log/Register.jsp">
+		<s:a href="Register.jsp">
 			<button type="button">Créer un compte!</button>
 		</s:a>
 	</s:div>

@@ -15,6 +15,8 @@ Editeur : <s:property value="book.publisher.name"/> <br>
 ISBN : <s:property value="book.isbn"/> <br>
 Année de Publication : <s:property value="book.year"/> <br>
 Prix : <s:property value="book.price"/> <br>
+URL de l'image : <s:property value="book.urlImage"/> <br>
+URL de l'image miniature : <s:property value="book.urlImageMini"/> <br>
 	 <a href= Menu>Retourner au menu de la section</a>
 </body>
 </html>

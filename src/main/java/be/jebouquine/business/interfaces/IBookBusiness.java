@@ -21,7 +21,5 @@ public interface IBookBusiness {
 	public List<Book> bestSales();
 	
 	public List<Book> novelties();
-	
-	public boolean addComment(Book book,String comment);
 
 }

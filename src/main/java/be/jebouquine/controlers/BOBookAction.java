@@ -36,7 +36,10 @@ public class BOBookAction {
 		book.setPublisher(publisherBusiness.findByID(publisherId));
 		
 		try{
-			if(book.getTitle().length()>255||book.getIsbn().length()>255)
+			if(book.getTitle().length()>255 
+					|| book.getIsbn().length()>255 
+					|| book.getUrlImage().length()>255 
+					|| book.getUrlImageMini().length()>255)
 				throw new Exception();
 			book.setPrice(Double.parseDouble(price));
 			book.setYear(Integer.parseInt(year));

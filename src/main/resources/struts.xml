@@ -224,7 +224,7 @@
 			<result name="success">SearchResults.jsp</result>
 		</action>
 
-		<action name="prepAdvSearch" class="be.jebouquine.controlers.FOSearchBookAction"
+		<action name="PrepAdvSearch" class="be.jebouquine.controlers.FOSearchBookAction"
 			method="prepAdvancedSearch">
 			<result name="success">AdvancedSearch.jsp</result>
 		</action>
@@ -233,7 +233,7 @@
 			<result>BookPage.jsp</result>
 		</action>
 		
-		<action name="addCommentAndRefresh" class="be.jebouquine.controlers.FOBookPageAction"
+		<action name="AddCommentAndRefresh" class="be.jebouquine.controlers.FOBookPageAction"
 			method="addCommentAndRefresh">
 			<result>BookPage.jsp</result>
 		</action>

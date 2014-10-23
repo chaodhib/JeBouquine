@@ -57,7 +57,10 @@ public class Book {
 	private boolean isBestSales;
 
 	@Column(name="IMAGE")
-	private String url;
+	private String urlImage;
+	
+	@Column(name="IMAGE_MINI")
+	private String urlImageMini;
 	
 	public Integer getId() {
 		return id;
@@ -163,12 +166,20 @@ public class Book {
 		this.isBestSales = isBestSales;
 	}
 
-	public String getUrl() {
-		return url;
+	public String getUrlImage() {
+		return urlImage;
 	}
 
-	public void setUrl(String url) {
-		this.url = url;
+	public void setUrlImage(String urlImage) {
+		this.urlImage = urlImage;
+	}
+
+	public String getUrlImageMini() {
+		return urlImageMini;
+	}
+
+	public void setUrlImageMini(String urlImageMini) {
+		this.urlImageMini = urlImageMini;
 	}
 
 	@Override

@@ -19,6 +19,8 @@
 		<s:textfield name="book.isbn" label="ISBN" required="true"/>
 		<s:textfield name="year" label="Année de Publication (4chiffres)" required="true"/>
 		<s:textfield name="price" label="Prix" required="true"/>
+		<s:textfield name="book.urlImage" label="URL Image" required="false"/>
+		<s:textfield name="book.urlImageMini" label="URL Image Miniature (150px en hauteur)" required="false"/>
 		<s:submit/>
 	</s:form>
 	 <a href= Menu>Retourner au menu de la section</a>

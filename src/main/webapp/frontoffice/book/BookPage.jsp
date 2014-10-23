@@ -8,8 +8,7 @@
 <title><s:property value="book.title" /></title>
 </head>
 <body bgcolor="#ffffff" style="font-family: Arial;">
-	<s:action name="HeaderBand" executeResult="true"
-		namespace="/frontoffice"></s:action>
+	<s:action name="HeaderBand" executeResult="true" namespace="/frontoffice"></s:action>
 	<s:action name="Header" executeResult="true" namespace="/frontoffice"></s:action>
 
 	<s:div style="left:50%">
@@ -17,7 +16,7 @@
 
 			<tr>
 				<td><div align="left" style="margin-left: 50px">
-						<img src="<s:property value="book.url" />" style="height: 300px" />
+						<img src="<s:property value="book.urlImage" />" style="height: 300px" />
 					</div></td>
 				<td>
 					<div align="left" style="margin-left: 50px">
@@ -67,7 +66,7 @@
 	<br>
 	<s:if test="#session.sessionAccount!=null">
 	Ajouter un commentaire :
-	<s:form action="addCommentAndRefresh" namespace="/frontoffice/book">
+	<s:form action="AddCommentAndRefresh" namespace="/frontoffice/book">
 			<s:textarea name="commentToAdd.content" value=""
 				style="width:500px;height:150px;"></s:textarea>
 			<s:hidden name="bookId" value="%{book.id}" />
