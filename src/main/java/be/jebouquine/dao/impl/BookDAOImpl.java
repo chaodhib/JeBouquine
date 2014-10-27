@@ -22,6 +22,8 @@ public class BookDAOImpl extends GenericDAOImpl<Book> implements IBookDAO {
 
 	@Override
 	public void modify(Book object) throws Exception {
+		if(object.getId()==null)
+			throw new Exception("The DAO needs a valid ID to modify an object");
 		Book trueBook = findByID(object.getId());
 		
 		if(trueBook.equals(object))
@@ -35,17 +37,19 @@ public class BookDAOImpl extends GenericDAOImpl<Book> implements IBookDAO {
 	// Set les champs du book managé avec les valeurs du book de la vue
 	private Book setEverything(Book trueBook, Book object) {
 		trueBook.setAuthor(object.getAuthor());
-		trueBook.setAvailable(object.isAvailable());
-		trueBook.setBestSales(object.isBestSales());
+		trueBook.setIsAvailable(object.getIsAvailable());
+		trueBook.setIsBestSales(object.getIsBestSales());
+		trueBook.setIsNovelty(object.getIsNovelty());
 		trueBook.setCategory(object.getCategory());
 		trueBook.setComments(object.getComments());
 		trueBook.setPublisher(object.getPublisher());
 		trueBook.setIsbn(object.getIsbn());
-		trueBook.setNovelty(object.isNovelty());
 		trueBook.setOrders(object.getOrders());
 		trueBook.setPrice(object.getPrice());
 		trueBook.setTitle(object.getTitle());
 		trueBook.setYear(object.getYear());
+		trueBook.setUrlImage(object.getUrlImage());
+		trueBook.setUrlImageMini(object.getUrlImageMini());
 		return trueBook;
 	}
 
@@ -155,6 +159,7 @@ public class BookDAOImpl extends GenericDAOImpl<Book> implements IBookDAO {
 	public List<Book> findBestSales() {
 		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(
 				Book.class);
+		
 		return criteria.add(Restrictions.eq("isBestSales", true)).list();
 	}
 

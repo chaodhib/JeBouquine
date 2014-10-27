@@ -1,11 +1,17 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title><s:property value="book.title" /></title>
+<style type="text/css">
+	.images{
+	max-height: 500px;
+	max-width: 500px;
+	}
+</style>
 </head>
 <body bgcolor="#ffffff" style="font-family: Arial;">
 	<s:action name="HeaderBand" executeResult="true" namespace="/frontoffice"></s:action>
@@ -16,7 +22,7 @@
 
 			<tr>
 				<td><div align="left" style="margin-left: 50px">
-						<img src="<s:property value="book.urlImage" />" style="height: 300px" />
+						<img class="images" src="<s:property value="book.urlImage" />"/>
 					</div></td>
 				<td>
 					<div align="left" style="margin-left: 50px">
@@ -33,7 +39,7 @@
 						<br> Année de Publication :
 						<s:property value="book.year" />
 						<br> Prix :
-						<s:property value="book.price" />
+						<s:number name="book.price"/> &euro;
 						<br>
 					</div>
 				</td>
@@ -42,13 +48,19 @@
 		</table>
 		<br>
 		<br>
-		<s:form action="AddBookIntoCart" namespace="/frontoffice/cart">
-			<s:select name="desiredQtt" label="Quantité" list="qttChoice"
-				emptyOption="false" />
-			<s:hidden name="bookId" value="%{book.id}" />
-			<s:submit type="image" src="http://i.imgur.com/Hzc0zkg.png"
-				style="height:45px;" value="Ajouter au panier"></s:submit>
-		</s:form>
+<%-- 		<%=  book.title%> --%>
+		<s:if test="book.isAvailable">
+			<s:form action="AddBookIntoCart" namespace="/frontoffice/cart">
+				<s:select name="desiredQtt" label="Quantité" list="qttChoice"
+					emptyOption="false" />
+				<s:hidden name="bookId" value="%{book.id}" />
+				<s:submit type="image" src="http://i.imgur.com/Hzc0zkg.png"
+					style="height:45px;" value="Ajouter au panier"></s:submit>
+			</s:form>
+		</s:if>
+		<s:else>
+		Ce livre n'est actuellement pas disponible à la commande.<br>
+		</s:else>
 	</s:div>
 	<a href=../Menu>Retour au menu</a>
 	

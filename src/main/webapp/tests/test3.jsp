@@ -8,12 +8,13 @@
 <title>Insert title here</title>
 </head>
 <body>
-
-	<s:form action="Add" namespace="/backoffice/category">
-		<s:label>Ajouter une nouvelle catégorie :</s:label>
-		<s:textfield name="category.name" label="Nom" required="true" />
-		<s:submit />
+	<%= request.getLocale().getCountry() %>
+	
+	<%   %>
+	
+	<s:form>
+	<s:textfield name="a" value="" label="Prix"></s:textfield>
+	<s:submit/>
 	</s:form>
-	 <a href= Menu>Retourner au menu de la section</a>
 </body>
 </html>

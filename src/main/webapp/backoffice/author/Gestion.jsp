@@ -1,7 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
@@ -9,9 +9,9 @@
 </head>
 <body>
  
-	<s:form action="Search" namespace="backoffice/author">
+	<s:form action="Search" namespace="/backoffice/author">
 		<s:label>Recherche un auteur :</s:label>
-		<s:textfield name="searchAuthor.firstName" label="Prénom" />
+		<s:textfield name="searchAuthor.firstName" label="PrÃ©nom" />
 		<s:textfield name="searchAuthor.lastName" label="Nom" />
 		<s:submit />
 	</s:form>

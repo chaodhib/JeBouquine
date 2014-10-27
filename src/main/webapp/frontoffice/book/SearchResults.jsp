@@ -1,11 +1,13 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
+<!DOCTYPE html>
+<html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Je Bouquine, résultats de la recherche</title>
 </head>
-<body bgcolor="#ffffff" style="font-family: Arial;">
+<body style="font-family: Arial;">
 	<s:action name="HeaderBand" executeResult="true" namespace="/frontoffice"></s:action>
 	<s:action name="Header" executeResult="true" namespace="/frontoffice"></s:action>
 	Critères de la recherche :
@@ -53,27 +55,31 @@
 		<col width="30" />
 		<col width="20" />
 		<col width="20" />
+		<thead>
 		<tr>
-			<td><h3>Titre</h3></td>
-			<td><h3>Auteur</h3></td>
-			<td><h3>Editeur</h3></td>
-			<td><h3>Prix</h3></td>
-			<td><h3>Voir la Fiche</h3></td>
+			<th>Titre</th>
+			<th>Auteur</th>
+			<th>Editeur</th>
+			<th>Prix</th>
+			<th>Voir la Fiche</th>
 		</tr>
-
+		</thead>
+		
+		<tbody>
 		<s:iterator value="searchResults">
 			<tr>
 				<td><s:property value="title" /></td>
 				<td><s:property value="author.firstName" /> <s:property
 						value="author.lastName" /></td>
 				<td><s:property value="publisher.name" /></td>
-				<td><s:property value="price" /> euros</td>
-				<td><s:form action="View" namespace="/frontoffice/book">
+				<td><s:number name="price"/> &euro;</td>
+				<td><s:form action="View" namespace="/frontoffice/book" >
 						<input type="submit" name="modifMap[<s:property value='id'/>]"
 							value="Voir" />
 					</s:form></td>
 			</tr>
 		</s:iterator>
+		</tbody>
 
 	</table>
 	<a href=../Menu>Retour à l'accueil</a>

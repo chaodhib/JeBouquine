@@ -9,6 +9,7 @@ import be.jebouquine.business.criteria.CriteriaSearchBook;
 import be.jebouquine.business.interfaces.IBookBusiness;
 import be.jebouquine.dao.interfaces.IBookDAO;
 import be.jebouquine.entities.Book;
+import be.jebouquine.exceptions.JB_Business_ValidationException;
 
 @Transactional(readOnly= false)
 public class BookBusinessImpl implements IBookBusiness {
@@ -33,27 +34,67 @@ public class BookBusinessImpl implements IBookBusiness {
 	@Override
 	public boolean add(Book book) {
 		try {
+			if(!validationBook(book))
+				throw new JB_Business_ValidationException();
 			bookDAO.add(book);
 			return true;
 		} catch (Exception e) {
 			return false;
 		}
 	}
+	
+	@Override
+	public boolean modify(Book book) {
+		try {
+			if(!validationBook(book))
+				throw new JB_Business_ValidationException();
+			bookDAO.modify(book);
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+	
+	/**
+	 * 
+	 * @param book
+	 * @return true if the validation succeeded. False if not
+	 */
+	private boolean validationBook(Book book){
+		if(book.getTitle()==null || book.getTitle().isEmpty())
+			return false;
+		
+		if(book.getAuthor()==null||book.getCategory()==null||book.getPublisher()==null)
+			return false;
+		
+		if(book.getIsbn()==null || book.getIsbn().isEmpty())
+			return false;
+		
+		if(book.getYear()==null || book.getYear()>9999 || book.getYear()<0)
+			return false;
+		
+		if(book.getPrice()==null || book.getPrice()<0.0)
+			return false;
+		
+		if(book.getUrlImage()==null|| book.getUrlImage().isEmpty())
+			book.setUrlImage("http://i.imgur.com/lw87NbB.png?1"); // image "No Image Available"
+		
+		if(book.getUrlImageMini()==null|| book.getUrlImageMini().isEmpty())
+			book.setUrlImageMini("http://i.imgur.com/lw87NbB.png?1");
+		
+		if(book.getTitle().length()>255 
+				|| book.getIsbn().length()>255 
+				|| book.getUrlImage().length()>255 
+				|| book.getUrlImageMini().length()>255)
+			return false;
+		return true;
+	}
 
 	@Override
 	public boolean remove(Book book) {
 		try {
 			bookDAO.remove(book);
-			return true;
-		} catch (Exception e) {
-			return false;
-		}
-	}
-
-	@Override
-	public boolean modify(Book book) {
-		try {
-			bookDAO.modify(book);
 			return true;
 		} catch (Exception e) {
 			return false;

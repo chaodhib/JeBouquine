@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.opensymphony.xwork2.ActionContext;
+
 import be.jebouquine.business.criteria.CriteriaSearchBook;
 import be.jebouquine.business.interfaces.IAuthorBusiness;
 import be.jebouquine.business.interfaces.IBookBusiness;
@@ -21,54 +23,39 @@ public class BOBookAction {
 	private IAuthorBusiness authorBusiness;
 	private ICategoryBusiness categoryBusiness;
 	private IEditorBusiness publisherBusiness;
-	private Book book;
-	private String author, category, publisher, price, year;
 	
+	private Book book;
 	private List<Author> authorList;
 	private List<Category> categoryList;
 	private List<Editor> publisherList;
-
 	private Integer authorId, categoryId, publisherId;
+	
+	private String errorMessage;
 	// METHOD ACTION 1
 	public String add() {
-		book.setAuthor(authorBusiness.findByID(authorId));
-		book.setCategory(categoryBusiness.findByID(categoryId));
-		book.setPublisher(publisherBusiness.findByID(publisherId));
-		
 		try{
-			if(book.getTitle().length()>255 
-					|| book.getIsbn().length()>255 
-					|| book.getUrlImage().length()>255 
-					|| book.getUrlImageMini().length()>255)
-				throw new Exception();
-			book.setPrice(Double.parseDouble(price));
-			book.setYear(Integer.parseInt(year));
-			if(book.getYear()>9999 || book.getYear()<-9999)
-				throw new Exception();
+			book.setAuthor(authorBusiness.findByID(authorId));
+			book.setCategory(categoryBusiness.findByID(categoryId));
+			book.setPublisher(publisherBusiness.findByID(publisherId));
+			
+			
+			if(bookBusiness.add(book))
+				return "success";
+			else{
+				errorMessage="";
+				return "error";
+			}
 		} catch(Exception e){
 			e.printStackTrace();
 			return "error";
 		}
-		
-		book.setBestSales(true);
-		book.setAvailable(true);
-		book.setNovelty(true);
-		
-		// TODO: Il est nécessaire du coté business de vérifier que chaque String soit bien
-		// stockable dans la DB cad qu'ils ont une taille max de 255
-		// faire pareil pour les valeurs chiffrées.
-		
-		if(bookBusiness.add(book))
-			return "success";
-		else
-			return "error";
 	}
 
 	// METHOD ACTION 2 celle ci preremplit le champs qui va permettre de modifier le nom d'une categorie/auteur/editeur/...
 	private Map<String, String[]> modifMap=new HashMap<String, String[]>();
 	
 	public String preModifOrSuppr() {
-		
+		// bout de code obscure incoming (vive Struts2)
 		String[] modif= modifMap.keySet().toArray(new String[0]); // recupere le set key (de String) de la map sous forme d'array de String en les castant
 		Integer ID=Integer.parseInt(modif[0]); // dans le set key de la map, il n'y a qu'un element, l'id de la categorie/auteur/etc.. correspodant à celui choisi pour la modification/supression
 		book=bookBusiness.findByID(ID);// mon controleur va peupler l'objet book qui sera disponible pour la page suivant si c'est un modif
@@ -76,11 +63,15 @@ public class BOBookAction {
 		String[] value=(String[]) modifMap.get(modif[0]); // recupere la value associé à la key modif[0] qui est un array de String de dimension 1
 		if(value[0].equals("Modifier"))
 		{
-			authorList=authorBusiness.findAll();
-			categoryList=categoryBusiness.findAll();
-			publisherList=publisherBusiness.findAll();
-			
-			return "modif";
+			try {
+				authorList=authorBusiness.findAll();
+				categoryList=categoryBusiness.findAll();
+				publisherList=publisherBusiness.findAll();
+				
+				return "modif";
+			} catch (Exception e) {
+				return "error";
+			}
 		}
 		else if(value[0].equals("Supprimer")){
 			try {
@@ -118,18 +109,13 @@ public class BOBookAction {
 		book.setCategory(categoryBusiness.findByID(categoryId));
 		book.setPublisher(publisherBusiness.findByID(publisherId));
 		
-		book.setBestSales(true);
-		book.setAvailable(true);
-		book.setNovelty(true);
-		
 		if(bookBusiness.modify(book))
 			return "success";
 		else
-				return "error";
+			return "error";
 	}
 
 	// METHOD ACTION 5
-
 	public String prepFields() {
 		authorList=authorBusiness.findAll();
 		categoryList=categoryBusiness.findAll();
@@ -238,46 +224,6 @@ public class BOBookAction {
 		this.numberOfResult = numberOfResult;
 	}
 
-	public String getAuthor() {
-		return author;
-	}
-
-	public void setAuthor(String author) {
-		this.author = author;
-	}
-
-	public String getCategory() {
-		return category;
-	}
-
-	public void setCategory(String category) {
-		this.category = category;
-	}
-
-	public String getPublisher() {
-		return publisher;
-	}
-
-	public void setPublisher(String publisher) {
-		this.publisher = publisher;
-	}
-
-	public String getPrice() {
-		return price;
-	}
-
-	public void setPrice(String price) {
-		this.price = price;
-	}
-
-	public String getYear() {
-		return year;
-	}
-
-	public void setYear(String year) {
-		this.year = year;
-	}
-
 	public Integer getAuthorId() {
 		return authorId;
 	}
@@ -300,6 +246,14 @@ public class BOBookAction {
 
 	public void setPublisherId(Integer publisherId) {
 		this.publisherId = publisherId;
+	}
+
+	public String getErrorMessage() {
+		return errorMessage;
+	}
+
+	public void setErrorMessage(String errorMessage) {
+		this.errorMessage = errorMessage;
 	}
 	
 	

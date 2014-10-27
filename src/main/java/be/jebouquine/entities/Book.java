@@ -141,28 +141,28 @@ public class Book {
 	public void setOrders(List<Order> orders) {
 		this.orders = orders;
 	}
-
-	public boolean isAvailable() {
+	
+	public boolean getIsAvailable(){
 		return isAvailable;
 	}
-
-	public void setAvailable(boolean isAvailable) {
+	
+	public void setIsAvailable(boolean isAvailable) {
 		this.isAvailable = isAvailable;
 	}
 
-	public boolean isNovelty() {
+	public boolean getIsNovelty(){
 		return isNovelty;
 	}
-
-	public void setNovelty(boolean isNovelty) {
+	
+	public void setIsNovelty(boolean isNovelty) {
 		this.isNovelty = isNovelty;
 	}
-
-	public boolean isBestSales() {
+	
+	public boolean getIsBestSales(){
 		return isBestSales;
 	}
-
-	public void setBestSales(boolean isBestSales) {
+	
+	public void setIsBestSales(boolean isBestSales) {
 		this.isBestSales = isBestSales;
 	}
 
@@ -201,6 +201,10 @@ public class Book {
 		result = prime * result
 				+ ((publisher == null) ? 0 : publisher.hashCode());
 		result = prime * result + ((title == null) ? 0 : title.hashCode());
+		result = prime * result
+				+ ((urlImage == null) ? 0 : urlImage.hashCode());
+		result = prime * result
+				+ ((urlImageMini == null) ? 0 : urlImageMini.hashCode());
 		result = prime * result + ((year == null) ? 0 : year.hashCode());
 		return result;
 	}
@@ -265,6 +269,16 @@ public class Book {
 				return false;
 		} else if (!title.equals(other.title))
 			return false;
+		if (urlImage == null) {
+			if (other.urlImage != null)
+				return false;
+		} else if (!urlImage.equals(other.urlImage))
+			return false;
+		if (urlImageMini == null) {
+			if (other.urlImageMini != null)
+				return false;
+		} else if (!urlImageMini.equals(other.urlImageMini))
+			return false;
 		if (year == null) {
 			if (other.year != null)
 				return false;
@@ -272,6 +286,8 @@ public class Book {
 			return false;
 		return true;
 	}
+
+
 	
 	
 	

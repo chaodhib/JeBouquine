@@ -42,11 +42,10 @@ public class GlobalParamDAOImpl extends GenericDAOImpl<GlobalParam> implements
 
 	@Override
 	public void modify(GlobalParam object) throws Exception {
-		if (null == object.getName() || object.getName().isEmpty())
-			throw new JeBouquineException(
-					"DAO : le nom d'un paramètre global ne peut être vide");
+		if(object.getId()==null)
+			throw new Exception("The DAO needs a valid ID to modify an object");
 
-		GlobalParam trueGP = findByName(object.getName());
+		GlobalParam trueGP = findByID(GlobalParam.class, object.getId());
 		trueGP.setName(object.getName());
 		trueGP.setValue(object.getValue());
 		this.sessionFactory.getCurrentSession().saveOrUpdate(trueGP);

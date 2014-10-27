@@ -1,11 +1,11 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Modifier mes données personnelles</title>
+<title>Modifier mes donnÃ©es personnelles</title>
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
     <!-- Load jQuery JS -->
     <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
@@ -28,7 +28,7 @@
 			<s:textfield name="client.lastName" value="%{client.lastName}"
 				label="Nom" requiredLabel="true" required="true" />
 			<s:textfield name="client.firstName" value="%{client.firstName}"
-				label="Prénom" requiredLabel="true" required="true" />
+				label="PrÃ©nom" requiredLabel="true" required="true" />
 
 			<s:if test="client.adress != null">
 				<s:textfield name="client.adress" value="%{client.adress}"
@@ -39,11 +39,11 @@
 			</s:else>
 			<s:if test="client.phoneNumber != null">
 				<s:textfield name="client.phoneNumber" value="%{client.phoneNumber}"
-					label="Numéro de téléphone" />
+					label="NumÃ©ro de tÃ©lÃ©phone" />
 			</s:if>
 			<s:else>
 				<s:textfield name="client.phoneNumber" value=""
-					label="Numéro de téléphone" />
+					label="NumÃ©ro de tÃ©lÃ©phone" />
 			</s:else>
 
 			<s:textfield name="client.birthdate" value="%{client.birthdate}"

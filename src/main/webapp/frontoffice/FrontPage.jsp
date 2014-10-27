@@ -1,31 +1,54 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
-
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 	<title>Bienvenue sur JeBouquine</title>
 	<style type="text/css">
 		body {
-/* 			font-family: arial; */
-/* 			background-color: rgb(185, 179, 175); */
+ 			font-family: Arial;
+ 			font-size: 1em;
+ 			background-color: #ffffff;
+/*  		line-height: 1.3em; */
+
 		}
 		
+		/*
 		h2 {
-/* 			color: #6699FF; */
+			color: #6699FF;
 		}
 		
 		.cases{
-/* 			background-color: #6699FF; */
-/* 			width: 200px; */
-/* 			float: left; */
-/* 			margin: 10px;} */
+ 			background-color: #6699FF;
+ 			width: 200px;
+ 			float: left;
+ 			margin: 10px;} 
+		}
+		
+		.BookCases{
+			height: 250px;
+ 			width: 200px;
+ 			float:center;
+			background-color: #FF0000;
+			left-margin:auto;
+			right-margin:auto;
+		}
+		
+		.cell{
+			background-color: #0088dd;
+		}
+		*/
+		
+		.images{
+		max-height: 150px;
+		max-width: 100%;
+		height: 150px;
 		}
 	</style>
 </head>
-<body bgcolor="#ffffff" style="font-family: Arial;">
+<body >
 	<s:action name="HeaderBand" executeResult="true" namespace="/frontoffice"></s:action>
 	<s:action name="Header" executeResult="true" namespace="/frontoffice"></s:action>
 	
@@ -38,13 +61,13 @@
 		<col width="20%" />
 		<col width="20%" />
 		<tr>
-		<s:iterator value="bestSales">
-			<td>
-			<s:div style="float:left;">
-				<img src="<s:property value="urlImageMini" />" alt="book cover"  style="height: 150px" /> <br>
+		<s:iterator value="bestSales" >
+			<td class="cell">
+			<s:div cssClass="BookCases">
+				<img class="images" src="<s:property value="urlImageMini" />" alt="book cover"/> <br>
 				<s:property value="title" /> <br>
-				<s:property value="author.firstName" /> <s:property value="author.lastName" /><br>
-				<s:property value="price" /> &euro;<br>
+				de <s:property value="author.firstName" /> <s:property value="author.lastName" /><br>
+				<s:number name="price"/> &euro;<br>
 				<s:form action="View" namespace="/frontoffice/book">
 						<input type="submit" name="modifMap[<s:property value='id'/>]" value="Voir" />
 				</s:form>
@@ -69,12 +92,12 @@
 		<col width="20%" />
 		<tr>
 		<s:iterator value="novelties">
-			<td>
-			<s:div style="float:left;">
-				<img src="<s:property value="urlImageMini" />" alt="book cover"  style="height: 150px" /> <br>
+			<td class="cell">
+			<s:div cssClass="BookCases">
+				<img class="images" src="<s:property value="urlImageMini" />" alt="book cover" /> <br>
 				<s:property value="title" /> <br>
-				<s:property value="author.firstName" /> <s:property value="author.lastName" /><br>
-				<s:property value="price" /> &euro;<br>
+				de <s:property value="author.firstName" /> <s:property value="author.lastName" /><br>
+				<s:number name="price"/> &euro;<br>
 				<s:form action="View" namespace="/frontoffice/book">
 						<input type="submit" name="modifMap[<s:property value='id'/>]" value="Voir" />
 				</s:form>

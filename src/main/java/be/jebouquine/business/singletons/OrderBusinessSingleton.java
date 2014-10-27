@@ -39,41 +39,8 @@ public class OrderBusinessSingleton {
 		return instance;
 	}
 	
-	
-//	public Integer getNextOrderNumber() throws Exception{
-//		GlobalParam param;
-//		try {
-//			param = globalParamDAO.findByName(PARAM_INCREMENT_COMMANDE);
-//		} catch (Exception e1) {
-//			throw new Exception(e1);
-//		}
-//		Integer orderNumber;
-//		if(param==null){
-//			param=new GlobalParam();
-//			param.setName(PARAM_INCREMENT_COMMANDE);
-//			param.setValue("2");
-//			orderNumber=1;
-//			try {
-//				globalParamDAO.add(param);
-//			} catch (Exception e) {
-//				// TODO Auto-generated catch block
-//				e.printStackTrace();
-//			}
-//		} else{
-//			orderNumber=Integer.parseInt(param.getValue());
-//			Integer nextOrderNumber=orderNumber+1;
-//			param.setValue(nextOrderNumber.toString());
-//			try {
-//				globalParamDAO.modify(param);
-//			} catch (Exception e) {
-//				// TODO Auto-generated catch block
-//				e.printStackTrace();
-//			}
-//		}
-//		
-//		return orderNumber;
-//	}
-	
+	// Refactor de la methode en gerant la transaction de maniere programmatique car conflit quand on veut utiliser
+	// L'AOP Transactional avec un singleton sans interface
 	public Integer getNextOrderNumber() throws Exception{
 		return transactionTemplate.execute(new TransactionCallback<Integer>() {
 
@@ -104,6 +71,40 @@ public class OrderBusinessSingleton {
 				return null;
 			}});
 	}
+	
+//	public Integer getNextOrderNumber() throws Exception{
+//	GlobalParam param;
+//	try {
+//		param = globalParamDAO.findByName(PARAM_INCREMENT_COMMANDE);
+//	} catch (Exception e1) {
+//		throw new Exception(e1);
+//	}
+//	Integer orderNumber;
+//	if(param==null){
+//		param=new GlobalParam();
+//		param.setName(PARAM_INCREMENT_COMMANDE);
+//		param.setValue("2");
+//		orderNumber=1;
+//		try {
+//			globalParamDAO.add(param);
+//		} catch (Exception e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//	} else{
+//		orderNumber=Integer.parseInt(param.getValue());
+//		Integer nextOrderNumber=orderNumber+1;
+//		param.setValue(nextOrderNumber.toString());
+//		try {
+//			globalParamDAO.modify(param);
+//		} catch (Exception e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//	}
+//	
+//	return orderNumber;
+//}
 
 	public IGlobalParamDAO getGlobalParamDAO() {
 		return globalParamDAO;

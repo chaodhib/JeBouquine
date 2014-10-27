@@ -1,32 +1,51 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" 
-"http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
+	<style type="text/css">
+		.HeaderLinks:link {
+/* 			color: #2447B2; */
+			text-decoration: none;
+		}
+		
+		.HeaderLinks:visited {
+/* 			color: #2447B2; */
+			text-decoration: none;
+		}
+		
+		#HeaderBox{
+			background-color:#cdf1ff;  
+			min-height: 135px;
+		}
+	</style>
 </head>
 <body>
-	<s:url action="PrepAdvSearch" id="prepAdvSearch" namespace="/frontoffice/book" />
+	<s:url action="PrepAdvSearch" id="prepAdvSearch"
+		namespace="/frontoffice/book" />
 
-	<s:div style="background-color:#cdf1ff;  min-height: 120px;">
-		<s:div style="display: inline-block;">
+	<s:div id="HeaderBox">
+		<s:div cssStyle="display: inline-block; margin-top: 12px;" >
 			<s:url action="Menu" id="return" />
-			<s:a href="%{return}">
+			<s:a cssStyle="" href="%{return}">
 				<img src="http://i.imgur.com/8GVUFNq.png" width="150px" />
 			</s:a>
 		</s:div>
 
-		<s:div align="center"
-			style="display:inline-block;  position:absolute; left: 40%">
+		<s:div align="center" style="display:inline-block;  position:absolute; left: 40%">
 			<s:div>
-				<s:form action="Search" namespace="/frontoffice/book">
-					<s:textfield name="keywords" required="true" />
-					<s:submit value="Rechercher"></s:submit>
-				</s:form>
+				<table>
+					<s:form action="Search" namespace="/frontoffice/book">
+						<tr>
+							<td><s:textfield name="keywords" required="true" /></td>
+							<td><s:submit value="Rechercher"></s:submit></td>
+						</tr>
+					</s:form>
+				</table>
 			</s:div>
 
-			<s:a href="%{prepAdvSearch}">Recherche avancée</s:a>
+			<s:a cssClass="HeaderLinks" href="%{prepAdvSearch}">Recherche avancÃ©e</s:a>
 
 			<s:div>
 				<table style="background-color: #E6E6FA" border="1">
@@ -43,7 +62,8 @@
 			</s:div>
 
 		</s:div>
-		<HR>
+
 	</s:div>
+<!-- 	<HR> -->
 </body>
 </html>

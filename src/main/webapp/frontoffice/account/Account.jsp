@@ -1,7 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
@@ -32,7 +32,7 @@
 				<td><s:property value="client.lastName" /></td>
 			</tr>
 			<tr>
-				<td><b>Prénom :</b></td>
+				<td><b>PrÃ©nom :</b></td>
 				<td><s:property value="client.firstName" /></td>
 			</tr>
 			<tr>
@@ -48,7 +48,7 @@
 					</s:if></td>
 			</tr>
 			<tr>
-				<td><b>Numéro de téléphone :</b></td>
+				<td><b>NumÃ©ro de tÃ©lÃ©phone :</b></td>
 				<td><s:if test="client.phoneNumber != null">
 						<s:property value="client.phoneNumber" />
 					</s:if></td>
