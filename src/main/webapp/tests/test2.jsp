@@ -45,7 +45,7 @@
   %>
   <hr>
   <label>Age: <input type="text" name="age" /></label>
-<br/ >
+<br>
 Gender:
 <input id="female" type="radio" name="gender"
 value="f">

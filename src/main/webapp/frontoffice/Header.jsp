@@ -6,43 +6,77 @@
 <head>
 	<style type="text/css">
 		.HeaderLinks:link {
-/* 			color: #2447B2; */
+			/* 			color: #2447B2; */
 			text-decoration: none;
 		}
 		
 		.HeaderLinks:visited {
-/* 			color: #2447B2; */
+			/* 			color: #2447B2; */
 			text-decoration: none;
 		}
 		
-		#HeaderBox{
-			background-color:#cdf1ff;  
+		#HeaderBox {
+			background-color: #cdf1ff;
 			min-height: 135px;
 		}
-	</style>
+		
+		.logo {
+			display: inline-block;
+			margin-top: 12px;
+		}
+		
+		/*
+		form {
+			width: 500px;
+			margin: 50px auto;
+		}
+				
+		.search {
+			padding: 8px 15px;
+			background: rgba(50, 50, 50, 0.2);
+			border: 0px solid #dbdbdb;
+		}
+		
+		.button {
+			position: relative;
+			padding: 6px 15px;
+			left: -8px;
+			border: 2px solid #207cca;
+			background-color: #207cca;
+			color: #fafafa;
+		}
+		
+		.button:hover {
+			background-color: #fafafa;
+			color: #207cca;
+		}
+		*/
+</style>
 </head>
 <body>
-	<s:url action="PrepAdvSearch" id="prepAdvSearch"
-		namespace="/frontoffice/book" />
+	<s:url action="PrepAdvSearch" id="prepAdvSearch" namespace="/frontoffice/book" />
+	<s:url action="Menu" id="return" namespace="/frontoffice" />
 
 	<s:div id="HeaderBox">
-		<s:div cssStyle="display: inline-block; margin-top: 12px;" >
-			<s:url action="Menu" id="return" />
-			<s:a cssStyle="" href="%{return}">
+	
+		<s:div cssClass="logo">
+			<s:a href="%{return}"> 
 				<img src="http://i.imgur.com/8GVUFNq.png" width="150px" />
 			</s:a>
 		</s:div>
 
 		<s:div align="center" style="display:inline-block;  position:absolute; left: 40%">
 			<s:div>
-				<table>
+				
 					<s:form action="Search" namespace="/frontoffice/book">
-						<tr>
-							<td><s:textfield name="keywords" required="true" /></td>
-							<td><s:submit value="Rechercher"></s:submit></td>
-						</tr>
+							<s:textfield name="keywords" required="true" />
+							<s:submit value="Go"></s:submit>
 					</s:form>
-				</table>
+				
+<!-- 					<form> -->
+<!--                                 <input class="search" type="text" placeholder="Search..." required> -->
+<!--                                 <input class="button" type="button" value="Search"> -->
+<!-- 					</form> -->
 			</s:div>
 
 			<s:a cssClass="HeaderLinks" href="%{prepAdvSearch}">Recherche avancée</s:a>

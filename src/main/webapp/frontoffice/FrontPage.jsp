@@ -10,7 +10,7 @@
 		body {
  			font-family: Arial;
  			font-size: 1em;
- 			background-color: #ffffff;
+ 			background-color: white; 
 /*  		line-height: 1.3em; */
 
 		}
@@ -35,14 +35,29 @@
 			left-margin:auto;
 			right-margin:auto;
 		}
-		
-		.cell{
-			background-color: #0088dd;
-		}
 		*/
+		.cell{
+/*  			background-color: #0088dd;  */
+			height: 275px;
+		}
 		
-		.images{
-		max-height: 150px;
+		.cellCount{
+/*  			background-color: #FF0000;  */
+			float: left;
+			padding: 5px;
+			/*
+			position: relative;
+			top: 0px;
+			*/
+		}
+		
+		.cellBook{
+/* 			background-color: #00CC00; */ 
+			float: left;
+			width: 80%;
+		}
+		
+		.miniImages{
 		max-width: 100%;
 		height: 150px;
 		}
@@ -61,17 +76,23 @@
 		<col width="20%" />
 		<col width="20%" />
 		<tr>
-		<s:iterator value="bestSales" >
-			<td class="cell">
-			<s:div cssClass="BookCases">
-				<img class="images" src="<s:property value="urlImageMini" />" alt="book cover"/> <br>
-				<s:property value="title" /> <br>
-				de <s:property value="author.firstName" /> <s:property value="author.lastName" /><br>
-				<s:number name="price"/> &euro;<br>
-				<s:form action="View" namespace="/frontoffice/book">
-						<input type="submit" name="modifMap[<s:property value='id'/>]" value="Voir" />
-				</s:form>
-			</s:div>
+		<s:iterator value="bestSales" status="iteratorStatus" >
+			<td > 
+			<s:div cssClass="cell">
+				<s:div cssClass="cellCount">
+					<s:property value="#iteratorStatus.count" />&#46;
+				</s:div>
+				
+				<s:div cssClass="cellBook">
+					<img class="miniImages" src="<s:property value="urlImageMini" />" alt="book cover"/> <br>
+					<s:property value="title" /> <br>
+					de <s:property value="author.firstName" /> <s:property value="author.lastName" /><br>
+					<s:number name="price"/> &euro;<br>
+					<s:form action="View" namespace="/frontoffice/book">
+							<input type="submit" name="modifMap[<s:property value='id'/>]" value="Voir" />
+					</s:form>
+				</s:div>
+			</s:div> 
 			</td>
 		</s:iterator>
 		</tr>
@@ -91,17 +112,23 @@
 		<col width="20%" />
 		<col width="20%" />
 		<tr>
-		<s:iterator value="novelties">
-			<td class="cell">
-			<s:div cssClass="BookCases">
-				<img class="images" src="<s:property value="urlImageMini" />" alt="book cover" /> <br>
-				<s:property value="title" /> <br>
-				de <s:property value="author.firstName" /> <s:property value="author.lastName" /><br>
-				<s:number name="price"/> &euro;<br>
-				<s:form action="View" namespace="/frontoffice/book">
-						<input type="submit" name="modifMap[<s:property value='id'/>]" value="Voir" />
-				</s:form>
-			</s:div>
+		<s:iterator value="novelties" status="iteratorStatus" >
+			<td > 
+			<s:div cssClass="cell">
+				<s:div cssClass="cellCount">
+					<s:property value="#iteratorStatus.count" />&#46;
+				</s:div>
+				
+				<s:div cssClass="cellBook">
+					<img class="miniImages" src="<s:property value="urlImageMini" />" alt="book cover"/> <br>
+					<s:property value="title" /> <br>
+					de <s:property value="author.firstName" /> <s:property value="author.lastName" /><br>
+					<s:number name="price"/> &euro;<br>
+					<s:form action="View" namespace="/frontoffice/book">
+							<input type="submit" name="modifMap[<s:property value='id'/>]" value="Voir" />
+					</s:form>
+				</s:div>
+			</s:div>	
 			</td>
 		</s:iterator>
 		</tr>

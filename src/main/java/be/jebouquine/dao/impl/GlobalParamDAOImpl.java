@@ -5,7 +5,6 @@ import org.hibernate.criterion.Restrictions;
 
 import be.jebouquine.dao.interfaces.IGlobalParamDAO;
 import be.jebouquine.entities.GlobalParam;
-import be.jebouquine.exceptions.JeBouquineException;
 
 public class GlobalParamDAOImpl extends GenericDAOImpl<GlobalParam> implements
 		IGlobalParamDAO {

@@ -6,13 +6,17 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
+<style type="text/css">
+	table{
+	width: 60%}
+</style>
 </head>
 <body bgcolor="#ffffff" style="font-family: Arial;">
 	<s:action name="HeaderBand" executeResult="true"
 		namespace="/frontoffice"></s:action>
 	<s:action name="Header" executeResult="true" namespace="/frontoffice"></s:action>
 
-	<table width=60%>
+	<table>
 		<col width="20%">
 		<col width="10%">
 		<col width="10%">

@@ -5,8 +5,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.opensymphony.xwork2.ActionContext;
-
 import be.jebouquine.business.criteria.CriteriaSearchBook;
 import be.jebouquine.business.interfaces.IAuthorBusiness;
 import be.jebouquine.business.interfaces.IBookBusiness;
