@@ -5,11 +5,14 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Je Bouquine, résultats de la recherche</title>
+	<title>Résultat de recherche - JeBouquine</title>
+	<!-- Import CSS -->
+	<s:head  template="css.ftl" templateDir="ressources/template" />
 </head>
-<body style="font-family: Arial;">
-	<s:action name="HeaderBand" executeResult="true" namespace="/frontoffice"></s:action>
-	<s:action name="Header" executeResult="true" namespace="/frontoffice"></s:action>
+<body >
+	<s:action name="Header" executeResult="true" namespace="/frontoffice"></s:action> 
+	
+	<div id="content">
 	Critères de la recherche :
 	<br>
 
@@ -49,7 +52,7 @@
 	<s:property value="numberOfResult" />
 
 
-	<table style="width: 100%" border="1">
+	<table style="width: 100%" class="table">
 		<col width="50" />
 		<col width="30" />
 		<col width="30" />
@@ -73,15 +76,22 @@
 						value="author.lastName" /></td>
 				<td><s:property value="publisher.name" /></td>
 				<td><s:number name="price"/> &euro;</td>
-				<td><s:form action="View" namespace="/frontoffice/book" >
-						<input type="submit" name="modifMap[<s:property value='id'/>]"
-							value="Voir" />
-					</s:form></td>
+				<td>
+					<s:url action="View" namespace="/frontoffice/book" var="bookPage">
+							<s:param name="bookId" value="%{id}" />
+					</s:url> 
+					<s:a href="%{bookPage}">Voir</s:a>
+				</td>
 			</tr>
 		</s:iterator>
 		</tbody>
 
 	</table>
+	<br/>
 	<a href=../Menu>Retour à l'accueil</a>
+	</div>
+
+	<!-- Import JavaScript -->
+	<s:head  template="js.ftl" templateDir="ressources/template" />
 </body>
 </html>

@@ -5,15 +5,16 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Mon Compte</title>
+	<title>Mon compte - JeBouquine</title>
+	<!-- Import CSS -->
+	<s:head  template="css.ftl" templateDir="ressources/template" />
 </head>
-<body bgcolor="#ffffff" style="font-family: Arial;">
-	<s:action name="HeaderBand" executeResult="true"
-		namespace="/frontoffice"></s:action>
-	<s:action name="Header" executeResult="true" namespace="/frontoffice"></s:action>
+<body >
+	<s:action name="Header" executeResult="true" namespace="/frontoffice"></s:action> 
 	
 	<s:url action="EditAccount" var="modif" namespace="/frontoffice/account" />
 	
+	<div id="content">
 	<s:div style=" left:50%" align="center">
 		<h2>Mon Compte</h2>
 		<table style="width: 50%">
@@ -57,7 +58,9 @@
 		</table>
 		<s:a href="%{modif}"><button type="button">Modifier</button></s:a>
 	</s:div>
+	</div>
 
-
+	<!-- Import JavaScript -->
+	<s:head  template="js.ftl" templateDir="ressources/template" />
 </body>
 </html>

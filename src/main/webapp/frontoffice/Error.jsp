@@ -5,10 +5,19 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>BackOffice jeBouquine</title>
+	<title>Erreur - JeBouquine</title>
+	<!-- Import CSS -->
+	<s:head  template="css.ftl" templateDir="ressources/template" />
 </head>
-<body>
-<h1>Erreur</h1>
-L'opération que vous avez demandé a échoué.
+<body >
+	<s:action name="Header" executeResult="true" namespace="/frontoffice"></s:action> 
+	
+	<div id="content">
+	<h1>Erreur</h1>
+	L'opération que vous avez demandé a échoué.
+	</div>
+
+	<!-- Import JavaScript -->
+	<s:head  template="js.ftl" templateDir="ressources/template" />
 </body>
 </html>

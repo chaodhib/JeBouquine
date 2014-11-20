@@ -5,27 +5,29 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+	<title>S'inscrire - JeBouquine</title>
+	<!-- Import CSS -->
+	<s:head  template="css.ftl" templateDir="ressources/template" />
 </head>
-<body bgcolor="#ffffff" style="font-family: Arial;">
-	<s:action name="HeaderBand" executeResult="true"
-		namespace="/frontoffice"></s:action>
-	<s:action name="Header" executeResult="true" namespace="/frontoffice"></s:action>
-
-
+<body >
+	<s:action name="Header" executeResult="true" namespace="/frontoffice"></s:action> 
+	
+	<div id="content">
 	<s:div style="height: 100%; width: 100%;" align="center">
 		<h2>Identification</h2>
 		<s:form action="Register" namespace="/frontoffice/log">
-			<s:textfield name="client.login" label="Votre login" requiredLabel="true" required="true"/>
-			<s:password name="client.password" label="Votre mot de passe" requiredLabel="true" required="true"/>
-			<s:password name="checkPassword" label="Retaper votre mot de passe" requiredLabel="true" required="true"/>
-			<s:textfield name="client.email" label="Votre email" requiredLabel="true" required="true"/>
-			<br>
-			<s:textfield name="client.firstName" label="Votre prénom" requiredLabel="true" required="true"/>
-			<s:textfield name="client.lastName" label="Votre nom" requiredLabel="true" required="true"/>
+			<s:textfield name="client.login" label="Votre login" required="true"/>
+			<s:password name="client.password" label="Votre mot de passe" required="true"/>
+			<s:password name="checkPassword" label="Retaper votre mot de passe" required="true"/>
+			<s:textfield name="client.email" label="Votre email" required="true"/>
+			<s:textfield name="client.firstName" label="Votre prénom" required="true"/>
+			<s:textfield name="client.lastName" label="Votre nom" required="true"/>
 			<s:submit />
 		</s:form>
 	</s:div>
+	</div>
 
+	<!-- Import JavaScript -->
+	<s:head  template="js.ftl" templateDir="ressources/template" />
 </body>
 </html>

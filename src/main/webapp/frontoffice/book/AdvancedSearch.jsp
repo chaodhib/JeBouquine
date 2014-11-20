@@ -5,12 +5,15 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Recherche avancée</title>
+	<title>Recherche avancée - JeBouquine</title>
+	<!-- Import CSS -->
+	<s:head  template="css.ftl" templateDir="ressources/template" />
 </head>
-<body style="font-family: Arial;">
-	<s:action name="HeaderBand" executeResult="true" namespace="/frontoffice"></s:action>
-	<s:action name="Header" executeResult="true" namespace="/frontoffice"></s:action>
-	<s:label>Rechercher un livre :</s:label>
+<body >
+	<s:action name="Header" executeResult="true" namespace="/frontoffice"></s:action> 
+
+	<div id="content">
+	<h3>Rechercher un livre :</h3>
 	<s:form action="Search" namespace="/frontoffice/book">
 		<s:textfield name="searchBook.title" label="Titre"/>
 		<s:select name="authorId" label="Auteur" list="authorList" listKey="id" emptyOption="true"/>
@@ -21,5 +24,9 @@
 		<s:submit/>
 	</s:form>
  	<a href=../Menu>Retour à l'accueil</a>
+ 	</div>
+
+	<!-- Import JavaScript -->
+	<s:head  template="js.ftl" templateDir="ressources/template" />
 </body>
 </html>

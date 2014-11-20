@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Modifier mes données personnelles</title>
+<title>Modifier mes données personnelles - JeBouquine</title>
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
     <!-- Load jQuery JS -->
     <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
@@ -13,14 +13,14 @@
     <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
     <!-- Load SCRIPT.JS which will create datepicker for input field  -->
     <script src="datepickerScript.js"></script>
+    	<!-- Import CSS -->
+	<s:head  template="css.ftl" templateDir="ressources/template" />
 </head>
 
-<body bgcolor="#ffffff" style="font-family: Arial;">
-	<s:action name="HeaderBand" executeResult="true"
-		namespace="/frontoffice"></s:action>
+<body>
 	<s:action name="Header" executeResult="true" namespace="/frontoffice"></s:action>
 
-
+	<div id="content">
 	<s:div style=" left:50%" align="center">
 		<s:form action="ReloadAccount" namespace="/frontoffice/account">
 			<s:textfield name="client.email" value="%{client.email}"
@@ -56,5 +56,9 @@
 			<s:submit value="Confirmer les modifications"/>
 		</s:form>
 	</s:div>
+	</div>
+	
+	<!-- Import JavaScript -->
+	<s:head  template="js.ftl" templateDir="ressources/template" />
 </body>
 </html>

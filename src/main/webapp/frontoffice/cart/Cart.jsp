@@ -5,22 +5,19 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
-<style type="text/css">
-	table{
-	width: 60%}
-</style>
+	<title>Votre panier - JeBouquine</title>
+	<!-- Import CSS -->
+	<s:head  template="css.ftl" templateDir="ressources/template" />
 </head>
-<body bgcolor="#ffffff" style="font-family: Arial;">
-	<s:action name="HeaderBand" executeResult="true"
-		namespace="/frontoffice"></s:action>
-	<s:action name="Header" executeResult="true" namespace="/frontoffice"></s:action>
-
-	<table>
+<body >
+	<s:action name="Header" executeResult="true" namespace="/frontoffice"></s:action> 
+	
+	<div id="content">
+	<table style="width: 60%" class="table">
+		<col width="40%">
 		<col width="20%">
-		<col width="10%">
-		<col width="10%">
-		<col width="10%">
+		<col width="20%">
+		<col width="20%">
 			<tr  style="border-bottom: 1px solid #000;">
 			<td><h4>Titre</h4></td>
 			<td><h4>Quantité</h4></td>
@@ -63,7 +60,9 @@
 	</s:if>
 	<br>
 	<s:a action="Menu" namespace="/frontoffice">Retourner à l'accueil</s:a>
+	</div>
 
-
+	<!-- Import JavaScript -->
+	<s:head  template="js.ftl" templateDir="ressources/template" />
 </body>
 </html>

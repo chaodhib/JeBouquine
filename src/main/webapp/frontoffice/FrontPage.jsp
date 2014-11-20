@@ -5,71 +5,16 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-	<title>Bienvenue sur JeBouquine</title>
-	<style type="text/css">
-		body {
- 			font-family: Arial;
- 			font-size: 1em;
- 			background-color: white; 
-/*  		line-height: 1.3em; */
-
-		}
-		
-		/*
-		h2 {
-			color: #6699FF;
-		}
-		
-		.cases{
- 			background-color: #6699FF;
- 			width: 200px;
- 			float: left;
- 			margin: 10px;} 
-		}
-		
-		.BookCases{
-			height: 250px;
- 			width: 200px;
- 			float:center;
-			background-color: #FF0000;
-			left-margin:auto;
-			right-margin:auto;
-		}
-		*/
-		.cell{
-/*  			background-color: #0088dd;  */
-			height: 275px;
-		}
-		
-		.cellCount{
-/*  			background-color: #FF0000;  */
-			float: left;
-			padding: 5px;
-			/*
-			position: relative;
-			top: 0px;
-			*/
-		}
-		
-		.cellBook{
-/* 			background-color: #00CC00; */ 
-			float: left;
-			width: 80%;
-		}
-		
-		.miniImages{
-		max-width: 100%;
-		height: 150px;
-		}
-	</style>
+	<title>JeBouquine - Vente de livre en ligne</title>
+	<!-- Import CSS -->
+	<s:head  template="css.ftl" templateDir="ressources/template" />
 </head>
 <body >
-	<s:action name="HeaderBand" executeResult="true" namespace="/frontoffice"></s:action>
-	<s:action name="Header" executeResult="true" namespace="/frontoffice"></s:action>
+	<s:action name="Header" executeResult="true" namespace="/frontoffice"></s:action> 
 	
+	<div id="content">
 	<h2>Meilleures ventes:</h2>
-	
-	<table style="width: 100%">
+	<table style="width: 100%" class="table">
 		<col width="20%" />
 		<col width="20%" />
 		<col width="20%" />
@@ -84,13 +29,16 @@
 				</s:div>
 				
 				<s:div cssClass="cellBook">
+					<s:url action="View" namespace="/frontoffice/book" var="bookPage">
+							<s:param name="bookId" value="%{id}" />
+					</s:url> 
+					
+					<s:a href="%{bookPage}">
 					<img class="miniImages" src="<s:property value="urlImageMini" />" alt="book cover"/> <br>
 					<s:property value="title" /> <br>
+					</s:a>
 					de <s:property value="author.firstName" /> <s:property value="author.lastName" /><br>
 					<s:number name="price"/> &euro;<br>
-					<s:form action="View" namespace="/frontoffice/book">
-							<input type="submit" name="modifMap[<s:property value='id'/>]" value="Voir" />
-					</s:form>
 				</s:div>
 			</s:div> 
 			</td>
@@ -104,8 +52,7 @@
 	<br />
 	<br />
 	<h2>Nouveautés:</h2>
-	
-	<table style="width: 100%">
+	<table style="width: 100%" class="table">
 		<col width="20%" />
 		<col width="20%" />
 		<col width="20%" />
@@ -120,22 +67,25 @@
 				</s:div>
 				
 				<s:div cssClass="cellBook">
+					<s:url action="View" namespace="/frontoffice/book" var="bookPage">
+							<s:param name="bookId" value="%{id}" />
+					</s:url> 
+					
+					<s:a href="%{bookPage}">
 					<img class="miniImages" src="<s:property value="urlImageMini" />" alt="book cover"/> <br>
 					<s:property value="title" /> <br>
+					</s:a>
 					de <s:property value="author.firstName" /> <s:property value="author.lastName" /><br>
 					<s:number name="price"/> &euro;<br>
-					<s:form action="View" namespace="/frontoffice/book">
-							<input type="submit" name="modifMap[<s:property value='id'/>]" value="Voir" />
-					</s:form>
 				</s:div>
-			</s:div>	
+			</s:div> 
 			</td>
 		</s:iterator>
 		</tr>
 	</table>
+	</div>
 
-<!-- 	 <img src="http://static.giantbomb.com/uploads/original/1/17172/1419618-unicorn2.jpg" width="100px"/> Signé Camille Leonard -->
-
-
+	<!-- Import JavaScript -->
+	<s:head  template="js.ftl" templateDir="ressources/template" />
 </body>
 </html>

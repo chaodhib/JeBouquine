@@ -5,13 +5,19 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Commande : étape 2</title>
+	<title>Commande enregistrée - JeBouquine</title>
+	<!-- Import CSS -->
+	<s:head  template="css.ftl" templateDir="ressources/template" />
 </head>
-<body bgcolor="#ffffff" style="font-family: Arial;">
-	<s:action name="HeaderBand" executeResult="true" namespace="/frontoffice"></s:action>
-	<s:action name="Header" executeResult="true" namespace="/frontoffice"></s:action>
+<body >
+	<s:action name="Header" executeResult="true" namespace="/frontoffice"></s:action> 
 	
+	<div id="content">
 	<h3>Merci pour votre commande!</h3><br>
 	<h3>Votre réference de commande est :</h3><s:property value="orderRef"/>
+	</div>
+
+	<!-- Import JavaScript -->
+	<s:head  template="js.ftl" templateDir="ressources/template" />
 </body>
 </html>

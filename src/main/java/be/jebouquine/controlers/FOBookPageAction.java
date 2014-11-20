@@ -26,43 +26,29 @@ public class FOBookPageAction implements Action, SessionAware {
 
 	
 	// Action Method 1
-	private List<Integer> qttChoice;
-	private List<Comment> comments;
+	private Integer bookId;
+
 	
-	private Map<String, String[]> modifMap=new HashMap<String, String[]>();
 	@Override
-	public String execute() throws Exception {
-//		String[] modif= modifMap.keySet().toArray(new String[0]); // recupere le set key (de String) de la map sous forme d'array de String en les castant
-//		Integer ID=Integer.parseInt(modif[0]); // dans le set key de la map, il n'y a qu'un element, l'id de la categorie/auteur/etc.. correspodant à celui choisi pour la modification/supression
-		String modif = null;
-		for(String s : modifMap.keySet())
-			modif=s;
-		
-		Integer bookId;
+	public String execute() {
 		try {
-			bookId = Integer.parseInt(modif);
-		} catch (NumberFormatException e) {
+//			Integer bookId = Integer.parseInt(bookIdInput);
+			prepareBookPage(bookId);// cette methode va peupler l'objet book qui sera disponible pour la page suivante
+			return SUCCESS;
+		} catch (Exception e) {
 			return ERROR;
 		}
-		
-		prepareBookPage(bookId);// mon controleur va peupler l'objet book qui sera disponible pour la page suivante
-		String[] value=(String[]) modifMap.get(modif); // recupere la value associé à la key modif[0] qui est un array de String de dimension 1
-		if(value[0].equals("Voir"))
-			return SUCCESS;
-		else
-			return ERROR;
 	}
 	
 	// Action Method 2
 	
 	//Pour l'ajout de commentaires
-	private static final String SA_KEY = "sessionAccount";
-	private Comment commentToAdd;	
-
-	private Map<String, Object> session;
 	private IClientBusiness clientBusiness;
+	private Map<String, Object> session;
+	private static final String SA_KEY = "sessionAccount";
 	
-	private Integer bookId;
+	private Comment commentToAdd;	
+	private List<Comment> comments;
 	
 	public String addCommentAndRefresh() {
 		try {
@@ -93,9 +79,12 @@ public class FOBookPageAction implements Action, SessionAware {
 	}
 	
 	// Private Method 1
+	private List<Integer> qttChoice;
 	
-	private void prepareBookPage(Integer idClient){
-		book=bookBusiness.findByID(idClient);
+	private void prepareBookPage(Integer bookId) throws Exception{
+		book=bookBusiness.findByID(bookId);
+		if(book==null)
+			throw new Exception();
 		if(null != commentBusiness.findByBook(book))
 			setComments(commentBusiness.findByBook(book));
 		qttChoice=new ArrayList<Integer>();
@@ -111,17 +100,6 @@ public class FOBookPageAction implements Action, SessionAware {
 	public final void setBookBusiness(IBookBusiness bookBusiness) {
 		this.bookBusiness = bookBusiness;
 	}
-
-
-	public final Map<String, String[]> getModifMap() {
-		return modifMap;
-	}
-
-
-	public final void setModifMap(Map<String, String[]> modifMap) {
-		this.modifMap = modifMap;
-	}
-
 
 	public Book getBook() {
 		return book;
@@ -199,5 +177,4 @@ public class FOBookPageAction implements Action, SessionAware {
 	public void setBookId(Integer bookId) {
 		this.bookId = bookId;
 	}
-
 }

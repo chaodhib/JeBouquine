@@ -5,12 +5,14 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+	<title>Modifier votre panier - JeBouquine</title>
+	<!-- Import CSS -->
+	<s:head  template="css.ftl" templateDir="ressources/template" />
 </head>
-<body bgcolor="#ffffff" style="font-family: Arial;">
-	<s:action name="HeaderBand" executeResult="true" namespace="/frontoffice"></s:action>
-	<s:action name="Header" executeResult="true" namespace="/frontoffice"></s:action>
+<body >
+	<s:action name="Header" executeResult="true" namespace="/frontoffice"></s:action> 
 	
+	<div id="content">
 	<s:form action="ModifyQuantity">
 	<s:iterator value="cart.lines">
 		<s:property value="bookTitle" />
@@ -20,5 +22,9 @@
 	
 	<s:submit value="Mettre à jour les quantités"/>
 	</s:form>
+	</div>
+
+	<!-- Import JavaScript -->
+	<s:head  template="js.ftl" templateDir="ressources/template" />
 </body>
 </html>

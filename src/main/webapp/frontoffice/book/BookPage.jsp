@@ -5,18 +5,20 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title><s:property value="book.title" /></title>
-<style type="text/css">
+	<title><s:property value="book.title"/> de <s:property value="book.author" /> - JeBouquine</title>
+	<!-- Import CSS -->
+	<s:head  template="css.ftl" templateDir="ressources/template" />
+	<style type="text/css">
 	.images{
 	max-height: 500px;
 	max-width: 500px;
 	}
 </style>
 </head>
-<body bgcolor="#ffffff" style="font-family: Arial;">
-	<s:action name="HeaderBand" executeResult="true" namespace="/frontoffice"></s:action>
-	<s:action name="Header" executeResult="true" namespace="/frontoffice"></s:action>
+<body >
+	<s:action name="Header" executeResult="true" namespace="/frontoffice"></s:action> 
 
+	<div id="content">
 	<s:div style="left:50%">
 		<table>
 
@@ -48,7 +50,6 @@
 		</table>
 		<br>
 		<br>
-<%-- 		<%=  book.title%> --%>
 		<s:if test="book.isAvailable">
 			<s:form action="AddBookIntoCart" namespace="/frontoffice/cart">
 				<s:select name="desiredQtt" label="Quantité" list="qttChoice"
@@ -88,6 +89,9 @@
 	<s:else>
 	Connectez vous pour poster un commentaire.
 	</s:else>
+	</div>
 
+	<!-- Import JavaScript -->
+	<s:head  template="js.ftl" templateDir="ressources/template" />
 </body>
 </html>

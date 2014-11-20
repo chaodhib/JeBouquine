@@ -101,15 +101,19 @@
 		p:location="classpath:jdbc.properties" />
 
 	<!-- Data Source configuration -->
-	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close" >
-		
+	<bean id="dataSource" class="org.apache.tomcat.jdbc.pool.DataSource" destroy-method="close" >
+<!-- 		<property name="factory" value="org.apache.tomcat.jdbc.pool.DataSourceFactory"></property>  -->
+<!-- 		<property name="type" value="javax.sql.DataSource"></property>  -->
 		<property name="driverClassName" 	value="${jdbc.driverClassName}"/>
         <property name="url" 				value="${jdbc.databaseurl}"/>
         <property name="username" 			value="${jdbc.username}"/>
         <property name="password" 			value="${jdbc.password}"/>
-<!--         <property name="testWhileIdle " 	value="true"/> -->
-<!--         <property name="validationQuery " 	value="SELECT 1" /> -->
-
+       	
+		<property name="maxAge" value="180000"></property> 
+		<property name="testOnBorrow" value="true"></property>
+		<property name="testWhileIdle" value="true"></property>
+		<property name="validationInterval" value="0"></property>  
+		<property name="validationQuery" value="SELECT 1"></property>
 	</bean>
 
 	<!-- Configure hibernate session factory -->
