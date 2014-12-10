@@ -1,4 +1,4 @@
-- FR
+>FR
 
 Projet de groupe ayant conclu ma formation Java EE. La formation s'est terminée en fin Septembre 2014. J'ai repris depuis et je continue à y apporter des modifications/améliorations. La plus grande modification a été l'intégration de Twitter Bootstrap pour la partie vue.
 
@@ -9,7 +9,7 @@ Une demo live est consultable à ces adresses (l'application a été déployé s
 - http://jebouquine-chaod.rhcloud.com/ (front-office)
 - http://jebouquine-chaod.rhcloud.com/backoffice/Menu (back-office)
 
-- EN
+>EN
 
 This is the group project that concluded my Java EE training. I have continued to work on it on the side since the end of training.
 
@@ -17,6 +17,6 @@ We used a three-tier architecture and the frameworks Struts 2, Spring and Hibern
 
 A live version is available on this address (It has been deployed on a Apache Tomcat 7 server using OpenShift) : 
 
-http://jebouquine-chaod.rhcloud.com/ (front-office part)
-http://jebouquine-chaod.rhcloud.com/backoffice/Menu (back-office part)
+- http://jebouquine-chaod.rhcloud.com/ (front-office part)
+- http://jebouquine-chaod.rhcloud.com/backoffice/Menu (back-office part)
 
