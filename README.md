@@ -4,10 +4,10 @@ Projet de groupe ayant conclu ma formation Java EE. La formation s'est terminée
 
 Le but était d’implémenter un site web marchand (une librairie en ligne) en utilisant les frameworks Spring, Hibernate, Struts 2. On peut consulter les catégories, y faire une recherche par mot clé ou par critère, voir la fiche d’un livre et passer une commande. De plus, il y a un partie back-office qui permet de gérer le catalogue directement par une interface html (minimaliste).
 
-Une demo live est consultable à ces adresses :
+Une demo live est consultable à ces adresses (l'application a été déployé sur un Apache Tomcat 7 server en utilisant OpenShift PaaS) :
 
-http://jebouquine-chaod.rhcloud.com/ (front-office)
-http://jebouquine-chaod.rhcloud.com/backoffice/Menu (back-office)
+- http://jebouquine-chaod.rhcloud.com/ (front-office)
+- http://jebouquine-chaod.rhcloud.com/backoffice/Menu (back-office)
 
 - EN
 
