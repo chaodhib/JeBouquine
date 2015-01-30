@@ -4,3 +4,7 @@ target
 !.settings/.jsdtscope
 .project
 .classpath
+/.openshift/
+
+bin
+build
