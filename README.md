@@ -6,8 +6,8 @@ Le but était d’implémenter un site web marchand (une librairie en ligne) en 
 
 Une demo live est consultable à ces adresses (l'application a été déployé sur un Apache Tomcat 7 server en utilisant OpenShift PaaS) :
 
-- http://jebouquine-chaod.rhcloud.com/ (front-office)
-- http://jebouquine-chaod.rhcloud.com/backoffice/Menu (back-office)
+- http://ec2-52-31-98-30.eu-west-1.compute.amazonaws.com (front-office)
+- http://ec2-52-31-98-30.eu-west-1.compute.amazonaws.com/backoffice/Menu (back-office)
 
 >EN
 
@@ -17,6 +17,6 @@ We used a three-tier architecture and the frameworks Struts 2, Spring and Hibern
 
 A live version is available on this address (It has been deployed on a Apache Tomcat 7 server using OpenShift) : 
 
-- http://jebouquine-chaod.rhcloud.com/ (front-office part)
-- http://jebouquine-chaod.rhcloud.com/backoffice/Menu (back-office part)
+- http://ec2-52-31-98-30.eu-west-1.compute.amazonaws.com (front-office)
+- http://ec2-52-31-98-30.eu-west-1.compute.amazonaws.com/backoffice/Menu (back-office)
 
